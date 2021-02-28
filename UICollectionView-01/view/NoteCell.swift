@@ -11,6 +11,8 @@ class NoteCell: UICollectionViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var bodyLabel: UILabel!
+    @IBOutlet var bottomConstraint: NSLayoutConstraint!
+    var layout: Layout?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,12 +23,19 @@ class NoteCell: UICollectionViewCell {
         titleLabel.text = plainNote.title
         bodyLabel.text = plainNote.body
     }
-
-    override func systemLayoutSizeFitting(_ targetSize: CGSize, withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority, verticalFittingPriority: UILayoutPriority) -> CGSize {
+    
+    func updateLayout(_ layout: Layout) {
+        if self.layout == layout {
+            return
+        }
         
-        let noOfItems = 2
-        let itemWidth = UIScreen.main.bounds.width / CGFloat(noOfItems)
+        switch layout {
+        case Layout.grid:
+            bottomConstraint.isActive = false
+        case Layout.list:
+            bottomConstraint.isActive = true
+        }
         
-        return super.systemLayoutSizeFitting(.init(width: itemWidth, height: itemWidth), withHorizontalFittingPriority: .required, verticalFittingPriority: .required)
+        self.layout = layout
     }
 }

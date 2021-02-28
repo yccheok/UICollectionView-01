@@ -39,12 +39,17 @@
                     </view>
                     <navigationItem key="navigationItem" id="lvM-p0-cZ4">
                         <rightBarButtonItems>
-                            <barButtonItem title="UNPIN" id="1mu-S8-JKx">
+                            <barButtonItem title="Layout" id="aRf-CG-Yym">
+                                <connections>
+                                    <action selector="layoutButtonPressed:" destination="BYZ-38-t0r" id="vXV-nL-Sj7"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="UnPin" id="1mu-S8-JKx">
                                 <connections>
                                     <action selector="unpinButtonPressed:" destination="BYZ-38-t0r" id="CLJ-xg-If6"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="PIN" id="CGf-2Y-JaP">
+                            <barButtonItem title="Pin" id="CGf-2Y-JaP">
                                 <connections>
                                     <action selector="pinButtonPressed:" destination="BYZ-38-t0r" id="PtV-vu-akV"/>
                                 </connections>
