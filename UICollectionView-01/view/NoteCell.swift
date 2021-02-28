@@ -21,4 +21,12 @@ class NoteCell: UICollectionViewCell {
         titleLabel.text = plainNote.title
         bodyLabel.text = plainNote.body
     }
+
+    override func systemLayoutSizeFitting(_ targetSize: CGSize, withHorizontalFittingPriority horizontalFittingPriority: UILayoutPriority, verticalFittingPriority: UILayoutPriority) -> CGSize {
+        
+        let noOfItems = 2
+        let itemWidth = UIScreen.main.bounds.width / CGFloat(noOfItems)
+        
+        return super.systemLayoutSizeFitting(.init(width: itemWidth, height: itemWidth), withHorizontalFittingPriority: .required, verticalFittingPriority: .required)
+    }
 }

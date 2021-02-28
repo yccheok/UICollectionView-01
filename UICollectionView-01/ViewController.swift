@@ -76,8 +76,7 @@ class ViewController: UIViewController {
         flowLayout.sectionInset = .init(top: 0, left: 0, bottom: 0, right: 0)
         flowLayout.minimumLineSpacing = 0
         flowLayout.minimumInteritemSpacing = 0
-        flowLayout.itemSize = .init(width: 120, height: 150)
-        //flowLayout.headerReferenceSize = .init(width: 0, height: 40)
+        flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
     }
     
     private func setupDataSource() {
@@ -145,8 +144,12 @@ class ViewController: UIViewController {
 extension ViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         if pinnedNotes.isEmpty {
+            // Do not show header.
+            
             return .init(width: 0, height: 0)
         } else {
+            // Calculate the correct height of header.
+            
             let noteHeader = NoteHeader.instanceFromNib()
             
             if (section == 0) {

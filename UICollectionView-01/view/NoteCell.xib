@@ -34,6 +34,7 @@
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <color key="backgroundColor" systemColor="systemGreenColor"/>
             <constraints>
                 <constraint firstItem="ZTg-uK-7eu" firstAttribute="top" secondItem="LRT-v8-nTP" secondAttribute="top" id="CkP-h8-x9B"/>
                 <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="LRT-v8-nTP" secondAttribute="trailing" id="dRC-Pz-2Z8"/>
@@ -51,6 +52,9 @@
         </collectionViewCell>
     </objects>
     <resources>
+        <systemColor name="systemGreenColor">
+            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
         <systemColor name="systemPurpleColor">
             <color red="0.68627450980392157" green="0.32156862745098042" blue="0.87058823529411766" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
