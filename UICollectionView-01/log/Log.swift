@@ -6,3 +6,8 @@
 //
 
 import Foundation
+import os.log
+
+func error_log(_ error: Error) {
+    os_log("%@", log: OSLog.default, type: .error, String(describing: error))
+}

@@ -7,15 +7,21 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0D4AFBE225EA986C00ED9E75 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D4AFBE125EA986C00ED9E75 /* Log.swift */; };
 		0D8CB53625EA783200E516FC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8CB53525EA783200E516FC /* AppDelegate.swift */; };
 		0D8CB53825EA783200E516FC /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8CB53725EA783200E516FC /* SceneDelegate.swift */; };
 		0D8CB53A25EA783200E516FC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8CB53925EA783200E516FC /* ViewController.swift */; };
 		0D8CB53D25EA783200E516FC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D8CB53B25EA783200E516FC /* Main.storyboard */; };
 		0D8CB53F25EA783400E516FC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0D8CB53E25EA783400E516FC /* Assets.xcassets */; };
 		0D8CB54225EA783400E516FC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0D8CB54025EA783400E516FC /* LaunchScreen.storyboard */; };
+		0D8CB54D25EA7C5600E516FC /* PlainNote.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8CB54C25EA7C5600E516FC /* PlainNote.swift */; };
+		0D8CB55125EA881C00E516FC /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0D8CB55025EA881C00E516FC /* Utils.swift */; };
+		0D8CB55925EA947600E516FC /* normal_plain_note.json in Resources */ = {isa = PBXBuildFile; fileRef = 0D8CB55825EA947600E516FC /* normal_plain_note.json */; };
+		0D8CB55D25EA955D00E516FC /* pinned_plain_note.json in Resources */ = {isa = PBXBuildFile; fileRef = 0D8CB55C25EA955D00E516FC /* pinned_plain_note.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0D4AFBE125EA986C00ED9E75 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		0D8CB53225EA783200E516FC /* UICollectionView-01.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "UICollectionView-01.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		0D8CB53525EA783200E516FC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		0D8CB53725EA783200E516FC /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -24,6 +30,10 @@
 		0D8CB53E25EA783400E516FC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		0D8CB54125EA783400E516FC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		0D8CB54325EA783400E516FC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		0D8CB54C25EA7C5600E516FC /* PlainNote.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlainNote.swift; sourceTree = "<group>"; };
+		0D8CB55025EA881C00E516FC /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		0D8CB55825EA947600E516FC /* normal_plain_note.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = normal_plain_note.json; sourceTree = "<group>"; };
+		0D8CB55C25EA955D00E516FC /* pinned_plain_note.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = pinned_plain_note.json; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -37,6 +47,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0D4AFBE025EA985B00ED9E75 /* log */ = {
+			isa = PBXGroup;
+			children = (
+				0D4AFBE125EA986C00ED9E75 /* Log.swift */,
+			);
+			path = log;
+			sourceTree = "<group>";
+		};
 		0D8CB52925EA783200E516FC = {
 			isa = PBXGroup;
 			children = (
@@ -56,6 +74,9 @@
 		0D8CB53425EA783200E516FC /* UICollectionView-01 */ = {
 			isa = PBXGroup;
 			children = (
+				0D4AFBE025EA985B00ED9E75 /* log */,
+				0D8CB55625EA906F00E516FC /* res */,
+				0D8CB54B25EA7C4800E516FC /* model */,
 				0D8CB53525EA783200E516FC /* AppDelegate.swift */,
 				0D8CB53725EA783200E516FC /* SceneDelegate.swift */,
 				0D8CB53925EA783200E516FC /* ViewController.swift */,
@@ -63,8 +84,34 @@
 				0D8CB53E25EA783400E516FC /* Assets.xcassets */,
 				0D8CB54025EA783400E516FC /* LaunchScreen.storyboard */,
 				0D8CB54325EA783400E516FC /* Info.plist */,
+				0D8CB55025EA881C00E516FC /* Utils.swift */,
 			);
 			path = "UICollectionView-01";
+			sourceTree = "<group>";
+		};
+		0D8CB54B25EA7C4800E516FC /* model */ = {
+			isa = PBXGroup;
+			children = (
+				0D8CB54C25EA7C5600E516FC /* PlainNote.swift */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
+		0D8CB55625EA906F00E516FC /* res */ = {
+			isa = PBXGroup;
+			children = (
+				0D8CB55725EA945B00E516FC /* json */,
+			);
+			path = res;
+			sourceTree = "<group>";
+		};
+		0D8CB55725EA945B00E516FC /* json */ = {
+			isa = PBXGroup;
+			children = (
+				0D8CB55825EA947600E516FC /* normal_plain_note.json */,
+				0D8CB55C25EA955D00E516FC /* pinned_plain_note.json */,
+			);
+			path = json;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -124,6 +171,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D8CB55925EA947600E516FC /* normal_plain_note.json in Resources */,
+				0D8CB55D25EA955D00E516FC /* pinned_plain_note.json in Resources */,
 				0D8CB54225EA783400E516FC /* LaunchScreen.storyboard in Resources */,
 				0D8CB53F25EA783400E516FC /* Assets.xcassets in Resources */,
 				0D8CB53D25EA783200E516FC /* Main.storyboard in Resources */,
@@ -137,6 +186,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0D8CB55125EA881C00E516FC /* Utils.swift in Sources */,
+				0D8CB54D25EA7C5600E516FC /* PlainNote.swift in Sources */,
+				0D4AFBE225EA986C00ED9E75 /* Log.swift in Sources */,
 				0D8CB53A25EA783200E516FC /* ViewController.swift in Sources */,
 				0D8CB53625EA783200E516FC /* AppDelegate.swift in Sources */,
 				0D8CB53825EA783200E516FC /* SceneDelegate.swift in Sources */,
