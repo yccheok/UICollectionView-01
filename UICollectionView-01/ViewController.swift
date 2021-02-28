@@ -76,7 +76,10 @@ class ViewController: UIViewController {
         flowLayout.sectionInset = .init(top: 0, left: 0, bottom: 0, right: 0)
         flowLayout.minimumLineSpacing = 0
         flowLayout.minimumInteritemSpacing = 0
-        flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
+        flowLayout.itemSize = CGSize(
+            width: UIScreen.main.bounds.width / CGFloat(2),
+            height: UIScreen.main.bounds.width / CGFloat(2)
+        )
     }
     
     private func setupDataSource() {
