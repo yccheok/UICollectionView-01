@@ -9,9 +9,20 @@ import UIKit
 
 class NoteHeader: UICollectionReusableView {
 
+    @IBOutlet weak var label: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+    }
+    
+    func setup(_ noteSection: NoteSection) {
+        switch noteSection {
+        case .normal:
+            label.text = "Normal"
+        case .pin:
+            label.text = "Pinned"
+        }
     }
     
 }

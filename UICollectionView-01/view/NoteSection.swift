@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+enum NoteSection {
+    case pin
+    case normal
+}
