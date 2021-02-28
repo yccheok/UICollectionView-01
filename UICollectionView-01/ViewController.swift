@@ -20,8 +20,20 @@ class ViewController: UIViewController {
     
     @IBOutlet weak var collectionView: UICollectionView!
     
+    var layout = Layout.grid
+    
     var dataSource: DataSource?
 
+    @IBAction func layoutButtonPressed(_ sender: Any) {
+        if layout == .grid {
+            layout = .list
+        } else {
+            layout = .grid
+        }
+        
+        collectionView.collectionViewLayout.invalidateLayout()
+    }
+    
     @IBAction func pinButtonPressed(_ sender: Any) {
         if normalNotes.isEmpty {
             return
@@ -76,13 +88,15 @@ class ViewController: UIViewController {
         flowLayout.sectionInset = .init(top: 0, left: 0, bottom: 0, right: 0)
         flowLayout.minimumLineSpacing = 0
         flowLayout.minimumInteritemSpacing = 0
-        flowLayout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
     }
     
     private func setupDataSource() {
         let dataSource = DataSource(
             collectionView: collectionView,
             cellProvider: { [weak self] (collectionView, indexPath, plainNote) -> UICollectionViewCell? in
+                
+                guard let self = self else { return nil }
+                
                 guard let noteCell = collectionView.dequeueReusableCell(
                     withReuseIdentifier: ViewController.NOTE_CELL,
                     for: indexPath) as? NoteCell else {
@@ -90,7 +104,9 @@ class ViewController: UIViewController {
                 }
                 
                 noteCell.setup(plainNote)
-
+                
+                noteCell.updateLayout(self.layout)
+                
                 return noteCell
             }
         )
@@ -142,6 +158,59 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        switch layout {
+        case .grid:
+            return gridLayout()
+        case .list:
+            return listLayout(indexPath)
+        }
+    }
+    
+    private func gridLayout() -> CGSize {
+        let noOfItems = 2
+        let itemWidth = UIScreen.main.bounds.width / CGFloat(noOfItems)
+        
+        return CGSize(
+            width: itemWidth,
+            height: itemWidth
+        )
+    }
+    
+    private func listLayout(_ indexPath: IndexPath) -> CGSize {
+        let plainNote: PlainNote
+        
+        if (indexPath.section == 0) {
+            if (!pinnedNotes.isEmpty) {
+                plainNote = pinnedNotes[indexPath.item]
+            } else {
+                precondition(!normalNotes.isEmpty)
+                
+                plainNote = normalNotes[indexPath.item]
+            }
+        } else {
+            plainNote = normalNotes[indexPath.item]
+        }
+        
+        guard let noteCell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: ViewController.NOTE_CELL,
+            for: indexPath) as? NoteCell else {
+            return CGSize(width: 0, height: 0)
+        }
+        
+        noteCell.setup(plainNote)
+        
+        noteCell.updateLayout(self.layout)
+        
+        let cgSize = noteCell.systemLayoutSizeFitting(
+           CGSize(width: collectionView.frame.width, height: UIView.layoutFittingExpandedSize.height),
+           withHorizontalFittingPriority: .required,
+           verticalFittingPriority: .fittingSizeLevel
+       )
+        
+        return cgSize
+    }
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
         if pinnedNotes.isEmpty {
             // Do not show header.
@@ -155,18 +224,22 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
             if (section == 0) {
                 if (!pinnedNotes.isEmpty) {
                     noteHeader.setup(.pin)
-                } else if (!normalNotes.isEmpty) {
+                } else {
+                    precondition(!normalNotes.isEmpty)
+                    
                     noteHeader.setup(.normal)
                 }
             } else {
                 noteHeader.setup(.normal)
             }
             
-            return noteHeader.systemLayoutSizeFitting(
+            let cgSize = noteHeader.systemLayoutSizeFitting(
                 CGSize(width: collectionView.frame.width, height: UIView.layoutFittingExpandedSize.height),
                 withHorizontalFittingPriority: .required,
                 verticalFittingPriority: .fittingSizeLevel
             )
+            
+            return cgSize
         }
     }
 }
