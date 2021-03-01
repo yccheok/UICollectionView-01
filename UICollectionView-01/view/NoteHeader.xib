@@ -15,7 +15,7 @@
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JgD-2u-6mi">
-                    <rect key="frame" x="0.0" y="44" width="320" height="157"/>
+                    <rect key="frame" x="8" y="52" width="304" height="141"/>
                     <color key="backgroundColor" systemColor="systemRedColor"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
@@ -24,10 +24,10 @@
             </subviews>
             <viewLayoutGuide key="safeArea" id="VXr-Tz-HHm"/>
             <constraints>
-                <constraint firstItem="VXr-Tz-HHm" firstAttribute="trailing" secondItem="JgD-2u-6mi" secondAttribute="trailing" id="HAH-nz-NtH"/>
-                <constraint firstItem="VXr-Tz-HHm" firstAttribute="bottom" secondItem="JgD-2u-6mi" secondAttribute="bottom" id="Tnx-K3-D7C"/>
-                <constraint firstItem="JgD-2u-6mi" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" id="U0g-II-Raq"/>
-                <constraint firstItem="VXr-Tz-HHm" firstAttribute="top" secondItem="JgD-2u-6mi" secondAttribute="top" id="pzl-h2-1go"/>
+                <constraint firstItem="VXr-Tz-HHm" firstAttribute="trailing" secondItem="JgD-2u-6mi" secondAttribute="trailing" constant="8" id="HAH-nz-NtH"/>
+                <constraint firstItem="VXr-Tz-HHm" firstAttribute="bottom" secondItem="JgD-2u-6mi" secondAttribute="bottom" constant="8" id="Tnx-K3-D7C"/>
+                <constraint firstItem="JgD-2u-6mi" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" constant="8" id="U0g-II-Raq"/>
+                <constraint firstItem="VXr-Tz-HHm" firstAttribute="top" secondItem="JgD-2u-6mi" secondAttribute="top" constant="-8" id="pzl-h2-1go"/>
             </constraints>
             <connections>
                 <outlet property="label" destination="JgD-2u-6mi" id="ywZ-bh-r6d"/>
