@@ -28,7 +28,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="This is text for body" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s0y-7n-n7J">
-                        <rect key="frame" x="0.0" y="532" width="459" height="0.0"/>
+                        <rect key="frame" x="8" y="532" width="443" height="0.0"/>
                         <color key="backgroundColor" systemColor="systemOrangeColor"/>
                         <constraints>
                             <constraint firstAttribute="height" id="HUd-6u-zXa"/>
@@ -43,9 +43,9 @@
             <color key="backgroundColor" systemColor="systemGreenColor"/>
             <constraints>
                 <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="LRT-v8-nTP" secondAttribute="trailing" priority="999" constant="8" id="Q04-i8-mM5"/>
-                <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="s0y-7n-n7J" secondAttribute="trailing" id="UT4-g6-MtM"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="s0y-7n-n7J" secondAttribute="trailing" priority="999" constant="8" id="UT4-g6-MtM"/>
                 <constraint firstItem="LRT-v8-nTP" firstAttribute="top" secondItem="ZTg-uK-7eu" secondAttribute="top" constant="8" id="YPb-qV-AKE"/>
-                <constraint firstItem="s0y-7n-n7J" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" id="coP-UZ-W6h"/>
+                <constraint firstItem="s0y-7n-n7J" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" constant="8" id="coP-UZ-W6h"/>
                 <constraint firstItem="s0y-7n-n7J" firstAttribute="top" secondItem="LRT-v8-nTP" secondAttribute="bottom" priority="999" constant="8" id="ep5-na-S7A"/>
                 <constraint firstItem="ZTg-uK-7eu" firstAttribute="bottom" secondItem="s0y-7n-n7J" secondAttribute="bottom" constant="8" id="ldS-mo-FSe"/>
                 <constraint firstItem="LRT-v8-nTP" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" constant="8" id="sZX-kA-vuJ"/>
