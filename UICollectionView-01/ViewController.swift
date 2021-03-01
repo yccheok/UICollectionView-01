@@ -13,6 +13,7 @@ class ViewController: UIViewController {
     typealias Snapshot = NSDiffableDataSourceSnapshot<NoteSection, PlainNote>
     
     private static let padding = CGFloat(8.0)
+    private static let minListHeight = CGFloat(44.0)
     
     private static let NOTE_CELL = "NOTE_CELL"
     private static let NOTE_HEADER = "NOTE_HEADER"
@@ -212,7 +213,7 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
            verticalFittingPriority: .fittingSizeLevel
        )
         
-        return cgSize
+        return CGSize(width: cgSize.width, height: max(cgSize.height, ViewController.minListHeight))
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {

@@ -6,3 +6,22 @@
 //
 
 import Foundation
+
+extension String {
+    var isTrimmedEmpty: Bool {
+        get {
+            self.trim().isEmpty
+        }
+    }
+    
+    func trim() -> String {
+        return self.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
+
+    static func isNullOrEmpty(_ string: String?) -> Bool {
+        guard let string = string else {
+            return false
+        }
+        return string.isTrimmedEmpty
+    }
+}
