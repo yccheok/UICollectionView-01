@@ -11,21 +11,24 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="NoteCell" customModule="UICollectionView_01" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="459" height="574"/>
+            <rect key="frame" x="0.0" y="0.0" width="1067" height="726"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="459" height="574"/>
+                <rect key="frame" x="0.0" y="0.0" width="1067" height="726"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title hello world good bye world" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LRT-v8-nTP" userLabel="Title">
-                        <rect key="frame" x="0.0" y="44" width="459" height="496"/>
+                        <rect key="frame" x="8" y="52" width="1051" height="0.0"/>
                         <color key="backgroundColor" systemColor="systemPurpleColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" id="024-em-AUJ"/>
+                        </constraints>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="This is text for body" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s0y-7n-n7J">
-                        <rect key="frame" x="0.0" y="540" width="459" height="0.0"/>
+                        <rect key="frame" x="0.0" y="60" width="1067" height="0.0"/>
                         <color key="backgroundColor" systemColor="systemOrangeColor"/>
                         <constraints>
                             <constraint firstAttribute="height" id="HUd-6u-zXa"/>
@@ -39,22 +42,24 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <color key="backgroundColor" systemColor="systemGreenColor"/>
             <constraints>
-                <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="LRT-v8-nTP" secondAttribute="trailing" id="Q04-i8-mM5"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="LRT-v8-nTP" secondAttribute="trailing" constant="8" id="Q04-i8-mM5"/>
                 <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="s0y-7n-n7J" secondAttribute="trailing" id="UT4-g6-MtM"/>
-                <constraint firstItem="LRT-v8-nTP" firstAttribute="top" secondItem="ZTg-uK-7eu" secondAttribute="top" id="YPb-qV-AKE"/>
+                <constraint firstItem="LRT-v8-nTP" firstAttribute="top" secondItem="ZTg-uK-7eu" secondAttribute="top" constant="8" id="YPb-qV-AKE"/>
                 <constraint firstItem="s0y-7n-n7J" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" id="coP-UZ-W6h"/>
-                <constraint firstItem="s0y-7n-n7J" firstAttribute="top" secondItem="LRT-v8-nTP" secondAttribute="bottom" id="ep5-na-S7A"/>
-                <constraint firstItem="ZTg-uK-7eu" firstAttribute="bottom" secondItem="s0y-7n-n7J" secondAttribute="bottom" id="ldS-mo-FSe"/>
-                <constraint firstItem="LRT-v8-nTP" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" id="sZX-kA-vuJ"/>
+                <constraint firstItem="s0y-7n-n7J" firstAttribute="top" secondItem="LRT-v8-nTP" secondAttribute="bottom" constant="8" id="ep5-na-S7A"/>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="bottom" secondItem="s0y-7n-n7J" secondAttribute="bottom" constant="8" id="ldS-mo-FSe"/>
+                <constraint firstItem="LRT-v8-nTP" firstAttribute="leading" secondItem="ZTg-uK-7eu" secondAttribute="leading" constant="8" id="sZX-kA-vuJ"/>
             </constraints>
-            <size key="customSize" width="459" height="574"/>
+            <size key="customSize" width="1067" height="726"/>
             <connections>
                 <outlet property="bodyLabel" destination="s0y-7n-n7J" id="nip-qI-wgO"/>
+                <outlet property="bodyLabelBottomConstraint" destination="ldS-mo-FSe" id="Qvc-OA-z4f"/>
                 <outlet property="bodyLabelZeroHeightConstraint" destination="HUd-6u-zXa" id="9en-in-DZq"/>
-                <outlet property="bottomConstraint" destination="ldS-mo-FSe" id="Qvc-OA-z4f"/>
                 <outlet property="titleLabel" destination="LRT-v8-nTP" id="6NF-ka-UOo"/>
+                <outlet property="titleLabelAndBodyLabelConstraint" destination="ep5-na-S7A" id="Z7B-6k-4pV"/>
+                <outlet property="titleLabelZeroHeightConstraint" destination="024-em-AUJ" id="8K9-W0-ffI"/>
             </connections>
-            <point key="canvasLocation" x="339.85507246376812" y="276.5625"/>
+            <point key="canvasLocation" x="780.43478260869574" y="327.45535714285711"/>
         </collectionViewCell>
     </objects>
     <resources>

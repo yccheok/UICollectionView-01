@@ -8,11 +8,16 @@
 import UIKit
 
 class NoteCell: UICollectionViewCell {
-
+    
+    private static let padding = CGFloat(8.0)
+    
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var bodyLabel: UILabel!
-    @IBOutlet var bottomConstraint: NSLayoutConstraint!
+    
+    @IBOutlet var bodyLabelBottomConstraint: NSLayoutConstraint!
+    @IBOutlet var titleLabelZeroHeightConstraint: NSLayoutConstraint!
     @IBOutlet var bodyLabelZeroHeightConstraint: NSLayoutConstraint!
+    @IBOutlet var titleLabelAndBodyLabelConstraint: NSLayoutConstraint!
     
     var layout: Layout?
     
@@ -20,6 +25,7 @@ class NoteCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
         
+        titleLabelZeroHeightConstraint.isActive = false
         bodyLabelZeroHeightConstraint.isActive = false
     }
 
@@ -33,20 +39,56 @@ class NoteCell: UICollectionViewCell {
             return
         }
         
+        let isTitleLabelEmpty = String.isNullOrEmpty(titleLabel.text)
+        let isBodyLabelEmpty = String.isNullOrEmpty(bodyLabel.text)
+        
         switch layout {
         case Layout.grid:
-            bottomConstraint.isActive = false
+            bodyLabelBottomConstraint.isActive = false
             bodyLabel.numberOfLines = 0
             
-            bodyLabelZeroHeightConstraint.isActive = false
-        case Layout.list:
-            bottomConstraint.isActive = true
-            bodyLabel.numberOfLines = 0
+            if isTitleLabelEmpty {
+                titleLabelZeroHeightConstraint.isActive = true
+            } else {
+                titleLabelZeroHeightConstraint.isActive = false
+            }
             
-            if String.isNullOrEmpty(bodyLabel.text) {
+            if isBodyLabelEmpty {
                 bodyLabelZeroHeightConstraint.isActive = true
             } else {
                 bodyLabelZeroHeightConstraint.isActive = false
+            }
+            
+            if isTitleLabelEmpty || isBodyLabelEmpty {
+                titleLabelAndBodyLabelConstraint.constant = 0
+            } else {
+                titleLabelAndBodyLabelConstraint.constant = NoteCell.padding
+            }
+            
+        case Layout.list:
+            bodyLabelBottomConstraint.isActive = true
+            bodyLabel.numberOfLines = 0
+
+            if isTitleLabelEmpty {
+                titleLabel.isHidden = true
+                titleLabelZeroHeightConstraint.isActive = true
+            } else {
+                titleLabel.isHidden = false
+                titleLabelZeroHeightConstraint.isActive = false
+            }
+            
+            if isBodyLabelEmpty {
+                bodyLabel.isHidden = true
+                bodyLabelZeroHeightConstraint.isActive = true
+            } else {
+                bodyLabel.isHidden = false
+                bodyLabelZeroHeightConstraint.isActive = false
+            }
+
+            if isTitleLabelEmpty || isBodyLabelEmpty {
+                titleLabelAndBodyLabelConstraint.constant = 0
+            } else {
+                titleLabelAndBodyLabelConstraint.constant = NoteCell.padding
             }
         }
         
