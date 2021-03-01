@@ -172,8 +172,8 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     }
     
     private func gridLayout() -> CGSize {
-        let noOfItems = 2
-        let itemWidth = (UIScreen.main.bounds.width - ViewController.padding*2.0) / CGFloat(noOfItems) - (ViewController.padding/2.0)
+        let noOfItems: CGFloat = 2.0
+        let itemWidth = (UIScreen.main.bounds.width - ViewController.padding*2.0 - ViewController.padding*(noOfItems-1.0)) / CGFloat(noOfItems)
         
         return CGSize(
             width: itemWidth,
