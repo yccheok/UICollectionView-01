@@ -12,6 +12,8 @@ class ViewController: UIViewController {
     typealias DataSource = UICollectionViewDiffableDataSource<NoteSection, PlainNote>
     typealias Snapshot = NSDiffableDataSourceSnapshot<NoteSection, PlainNote>
     
+    private static let padding = CGFloat(8.0)
+    
     private static let NOTE_CELL = "NOTE_CELL"
     private static let NOTE_HEADER = "NOTE_HEADER"
     
@@ -31,7 +33,9 @@ class ViewController: UIViewController {
             layout = .grid
         }
         
-        collectionView.collectionViewLayout.invalidateLayout()
+        // We call reloadData instead of collectionView.collectionViewLayout.invalidateLayout(). We need to ensure
+        // updateLayout is executed within setupDataSource.
+        collectionView.reloadData()
     }
     
     @IBAction func pinButtonPressed(_ sender: Any) {
@@ -85,8 +89,8 @@ class ViewController: UIViewController {
         guard let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
             return
         }
-        flowLayout.sectionInset = .init(top: 0, left: 0, bottom: 0, right: 0)
-        flowLayout.minimumLineSpacing = 0
+        flowLayout.sectionInset = .init(top: 0, left: ViewController.padding, bottom: 0, right: ViewController.padding)
+        flowLayout.minimumLineSpacing = ViewController.padding
         flowLayout.minimumInteritemSpacing = 0
     }
     
@@ -169,7 +173,7 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
     
     private func gridLayout() -> CGSize {
         let noOfItems = 2
-        let itemWidth = UIScreen.main.bounds.width / CGFloat(noOfItems)
+        let itemWidth = (UIScreen.main.bounds.width - ViewController.padding*2.0) / CGFloat(noOfItems) - (ViewController.padding/2.0)
         
         return CGSize(
             width: itemWidth,
@@ -203,7 +207,7 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
         noteCell.updateLayout(self.layout)
         
         let cgSize = noteCell.systemLayoutSizeFitting(
-           CGSize(width: collectionView.frame.width, height: UIView.layoutFittingExpandedSize.height),
+           CGSize(width: collectionView.frame.width - ViewController.padding*2.0, height: UIView.layoutFittingExpandedSize.height),
            withHorizontalFittingPriority: .required,
            verticalFittingPriority: .fittingSizeLevel
        )
