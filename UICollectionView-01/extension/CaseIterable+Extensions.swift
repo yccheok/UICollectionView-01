@@ -6,3 +6,13 @@
 //
 
 import Foundation
+
+extension CaseIterable where Self: Equatable {
+    func next() -> Self {
+        let allCases = Self.allCases
+        let selfIndex = allCases.firstIndex(of: self)!
+        let nextIndex = Self.allCases.index(after: selfIndex)
+        return allCases[nextIndex == allCases.endIndex ? allCases.startIndex : nextIndex]
+    }
+}
+
