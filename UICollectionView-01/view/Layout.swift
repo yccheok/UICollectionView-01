@@ -7,7 +7,9 @@
 
 import Foundation
 
-enum Layout {
+enum Layout: CaseIterable {
     case grid
+    case compactGrid
     case list
+    case compactList
 }

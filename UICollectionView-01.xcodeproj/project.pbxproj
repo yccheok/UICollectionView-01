@@ -26,6 +26,8 @@
 		0D8CB55925EA947600E516FC /* normal_plain_note.json in Resources */ = {isa = PBXBuildFile; fileRef = 0D8CB55825EA947600E516FC /* normal_plain_note.json */; };
 		0D8CB55D25EA955D00E516FC /* pinned_plain_note.json in Resources */ = {isa = PBXBuildFile; fileRef = 0D8CB55C25EA955D00E516FC /* pinned_plain_note.json */; };
 		0DC0027A25ED11DB0052B619 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DC0027925ED11DB0052B619 /* String+Extensions.swift */; };
+		0DC36D4E25EE61110002AF63 /* UIWindow+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DC36D4D25EE61110002AF63 /* UIWindow+Extensions.swift */; };
+		0DC36D5125EE68A50002AF63 /* CaseIterable+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DC36D5025EE68A50002AF63 /* CaseIterable+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +52,8 @@
 		0D8CB55825EA947600E516FC /* normal_plain_note.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = normal_plain_note.json; sourceTree = "<group>"; };
 		0D8CB55C25EA955D00E516FC /* pinned_plain_note.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = pinned_plain_note.json; sourceTree = "<group>"; };
 		0DC0027925ED11DB0052B619 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
+		0DC36D4D25EE61110002AF63 /* UIWindow+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindow+Extensions.swift"; sourceTree = "<group>"; };
+		0DC36D5025EE68A50002AF63 /* CaseIterable+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CaseIterable+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +85,8 @@
 			children = (
 				0D02E6CA25EBE1000061A09A /* UIView+Extensions.swift */,
 				0DC0027925ED11DB0052B619 /* String+Extensions.swift */,
+				0DC36D4D25EE61110002AF63 /* UIWindow+Extensions.swift */,
+				0DC36D5025EE68A50002AF63 /* CaseIterable+Extensions.swift */,
 			);
 			path = extension;
 			sourceTree = "<group>";
@@ -235,6 +241,8 @@
 				0DC0027A25ED11DB0052B619 /* String+Extensions.swift in Sources */,
 				0D4AFBE225EA986C00ED9E75 /* Log.swift in Sources */,
 				0D8CB53A25EA783200E516FC /* ViewController.swift in Sources */,
+				0DC36D5125EE68A50002AF63 /* CaseIterable+Extensions.swift in Sources */,
+				0DC36D4E25EE61110002AF63 /* UIWindow+Extensions.swift in Sources */,
 				0D02E6C625EBCB970061A09A /* NoteSection.swift in Sources */,
 				0D02E6CF25EC0D280061A09A /* Layout.swift in Sources */,
 				0D8CB53625EA783200E516FC /* AppDelegate.swift in Sources */,

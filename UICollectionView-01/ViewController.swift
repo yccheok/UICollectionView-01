@@ -27,12 +27,14 @@ class ViewController: UIViewController {
     
     var dataSource: DataSource?
 
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        
+        collectionView.reloadData()
+    }
+    
     @IBAction func layoutButtonPressed(_ sender: Any) {
-        if layout == .grid {
-            layout = .list
-        } else {
-            layout = .grid
-        }
+        layout = layout.next()
         
         // We call reloadData instead of collectionView.collectionViewLayout.invalidateLayout(). We need to ensure
         // updateLayout is executed within setupDataSource.
@@ -167,19 +169,39 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
         switch layout {
         case .grid:
             return gridLayout()
+        case .compactGrid:
+            return compactGridLayout()
         case .list:
             return listLayout(indexPath)
+        case .compactList:
+            return compactListLayout(indexPath)
         }
     }
     
-    private func gridLayout() -> CGSize {
-        let noOfItems: CGFloat = 2.0
-        let itemWidth = (UIScreen.main.bounds.width - ViewController.padding*2.0 - ViewController.padding*(noOfItems-1.0)) / CGFloat(noOfItems)
+    private func gridLayout(_ count: Int) -> CGSize {
+        let noOfItems: CGFloat = CGFloat(count)
+        let itemWidth = (collectionView.frame.width - ViewController.padding*2.0 - ViewController.padding*(noOfItems-1.0)) / CGFloat(noOfItems)
         
         return CGSize(
             width: itemWidth,
             height: itemWidth
         )
+    }
+    
+    private func gridLayout() -> CGSize {
+        if UIWindow.isPortrait {
+            return gridLayout(2)
+        } else {
+            return gridLayout(3)
+        }
+    }
+    
+    private func compactGridLayout() -> CGSize {
+        if UIWindow.isPortrait {
+            return gridLayout(3)
+        } else {
+            return gridLayout(4)
+        }
     }
     
     private func listLayout(_ indexPath: IndexPath) -> CGSize {
@@ -214,6 +236,10 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
        )
         
         return CGSize(width: cgSize.width, height: max(cgSize.height, ViewController.minListHeight))
+    }
+    
+    private func compactListLayout(_ indexPath: IndexPath) -> CGSize {
+        listLayout(indexPath)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
