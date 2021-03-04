@@ -56,27 +56,29 @@ class NoteCell: UICollectionViewCell {
     private func updateGridLayout() {
         let isTitleLabelEmpty = String.isNullOrEmpty(titleLabel.text)
         let isBodyLabelEmpty = String.isNullOrEmpty(bodyLabel.text)
+        var titleLabelIsHidden = false
+        var bodyLabelIsHidden = false
         
         bodyLabelBottomConstraint.isActive = false
         bodyLabel.numberOfLines = 0
         
         if isTitleLabelEmpty {
-            titleLabel.isHidden = true
+            titleLabelIsHidden = true
             titleLabelZeroHeightConstraint.isActive = true
         } else {
-            titleLabel.isHidden = false
+            titleLabelIsHidden = false
             titleLabelZeroHeightConstraint.isActive = false
         }
         
         if isBodyLabelEmpty {
-            bodyLabel.isHidden = true
+            bodyLabelIsHidden = true
             bodyLabelZeroHeightConstraint.isActive = true
         } else {
-            bodyLabel.isHidden = false
+            bodyLabelIsHidden = false
             bodyLabelZeroHeightConstraint.isActive = false
         }
         
-        if titleLabel.isHidden || bodyLabel.isHidden {
+        if titleLabelIsHidden || bodyLabelIsHidden {
             titleLabelAndBodyLabelConstraint.constant = 0
         } else {
             titleLabelAndBodyLabelConstraint.constant = NoteCell.padding
@@ -90,27 +92,29 @@ class NoteCell: UICollectionViewCell {
     private func updateListLayout() {
         let isTitleLabelEmpty = String.isNullOrEmpty(titleLabel.text)
         let isBodyLabelEmpty = String.isNullOrEmpty(bodyLabel.text)
+        var titleLabelIsHidden = false
+        var bodyLabelIsHidden = false
         
         bodyLabelBottomConstraint.isActive = true
         bodyLabel.numberOfLines = 0
 
         if isTitleLabelEmpty {
-            titleLabel.isHidden = true
+            titleLabelIsHidden = true
             titleLabelZeroHeightConstraint.isActive = true
         } else {
-            titleLabel.isHidden = false
+            titleLabelIsHidden = false
             titleLabelZeroHeightConstraint.isActive = false
         }
         
         if isBodyLabelEmpty {
-            bodyLabel.isHidden = true
+            bodyLabelIsHidden = true
             bodyLabelZeroHeightConstraint.isActive = true
         } else {
-            bodyLabel.isHidden = false
+            bodyLabelIsHidden = false
             bodyLabelZeroHeightConstraint.isActive = false
         }
 
-        if titleLabel.isHidden || bodyLabel.isHidden {
+        if titleLabelIsHidden || bodyLabelIsHidden {
             titleLabelAndBodyLabelConstraint.constant = 0
         } else {
             titleLabelAndBodyLabelConstraint.constant = NoteCell.padding
@@ -120,28 +124,30 @@ class NoteCell: UICollectionViewCell {
     private func updateCompactListLayout() {
         let isTitleLabelEmpty = String.isNullOrEmpty(titleLabel.text)
         let isBodyLabelEmpty = String.isNullOrEmpty(bodyLabel.text)
+        var titleLabelIsHidden = false
+        var bodyLabelIsHidden = false
         
         bodyLabelBottomConstraint.isActive = true
         bodyLabel.numberOfLines = 0
 
         if isTitleLabelEmpty {
-            titleLabel.isHidden = true
+            titleLabelIsHidden = true
             titleLabelZeroHeightConstraint.isActive = true
         } else {
-            titleLabel.isHidden = false
+            titleLabelIsHidden = false
             titleLabelZeroHeightConstraint.isActive = false
         }
         
         // In compact list, only either title or body can be shown.
-        if isBodyLabelEmpty || !titleLabel.isHidden {
-            bodyLabel.isHidden = true
+        if isBodyLabelEmpty || !titleLabelIsHidden {
+            bodyLabelIsHidden = true
             bodyLabelZeroHeightConstraint.isActive = true
         } else {
-            bodyLabel.isHidden = false
+            bodyLabelIsHidden = false
             bodyLabelZeroHeightConstraint.isActive = false
         }
 
-        if titleLabel.isHidden || bodyLabel.isHidden {
+        if titleLabelIsHidden || bodyLabelIsHidden {
             titleLabelAndBodyLabelConstraint.constant = 0
         } else {
             titleLabelAndBodyLabelConstraint.constant = NoteCell.padding
