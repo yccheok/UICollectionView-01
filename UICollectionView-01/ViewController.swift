@@ -27,6 +27,8 @@ class ViewController: UIViewController {
     
     var dataSource: DataSource?
 
+    var tmpNoteCell: NoteCell?
+    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         
@@ -219,11 +221,9 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
             plainNote = normalNotes[indexPath.item]
         }
         
-        guard let noteCell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: ViewController.NOTE_CELL,
-            for: indexPath) as? NoteCell else {
-            return CGSize(width: 0, height: 0)
-        }
+        let noteCell = self.tmpNoteCell ?? NoteCell.instanceFromNib()
+        
+        self.tmpNoteCell = noteCell
         
         noteCell.setup(plainNote)
         
