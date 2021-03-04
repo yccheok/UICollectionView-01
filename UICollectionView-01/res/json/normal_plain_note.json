@@ -33,5 +33,10 @@
         "title": "hello world",
         "body": "goodbye world",
         "pinned": false
+    },
+    {
+        "title": "",
+        "body": "",
+        "pinned": false
     }
 ]
