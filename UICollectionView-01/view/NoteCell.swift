@@ -14,24 +14,24 @@ class NoteCell: UICollectionViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var bodyLabel: UILabel!
     
-    @IBOutlet var bodyLabelBottomConstraint: NSLayoutConstraint!
-    @IBOutlet var titleLabelZeroHeightConstraint: NSLayoutConstraint!
-    @IBOutlet var bodyLabelZeroHeightConstraint: NSLayoutConstraint!
-    @IBOutlet var titleLabelAndBodyLabelConstraint: NSLayoutConstraint!
+    @IBOutlet var bottomStackView: UIStackView!
+    @IBOutlet var labelLabel: UILabel!
+    @IBOutlet var reminderLabel: UILabel!
     
     var layout: Layout?
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-        
-        titleLabelZeroHeightConstraint.isActive = false
-        bodyLabelZeroHeightConstraint.isActive = false
+
     }
 
     func setup(_ plainNote: PlainNote) {
         titleLabel.text = plainNote.title
         bodyLabel.text = plainNote.body
+
+        // TODO:
+        labelLabel.text = nil
+        reminderLabel.text = nil
     }
     
     func updateLayout(_ layout: Layout) {
@@ -56,33 +56,25 @@ class NoteCell: UICollectionViewCell {
     private func updateGridLayout() {
         let isTitleLabelEmpty = String.isNullOrEmpty(titleLabel.text)
         let isBodyLabelEmpty = String.isNullOrEmpty(bodyLabel.text)
-        var titleLabelIsHidden = false
-        var bodyLabelIsHidden = false
+        let isLabelLabelEmpty = String.isNullOrEmpty(labelLabel.text)
+        let isReminderLabelEmpty = String.isNullOrEmpty(reminderLabel.text)
         
-        bodyLabelBottomConstraint.isActive = false
-        bodyLabel.numberOfLines = 0
+        titleLabel.setContentHuggingPriority(.init(999), for: .vertical)
+        bodyLabel.setContentHuggingPriority(.init(999), for: .vertical)
         
         if isTitleLabelEmpty {
-            titleLabelIsHidden = true
-            titleLabelZeroHeightConstraint.isActive = true
+            titleLabel.isHidden = true
         } else {
-            titleLabelIsHidden = false
-            titleLabelZeroHeightConstraint.isActive = false
+            titleLabel.isHidden = false
         }
         
         if isBodyLabelEmpty {
-            bodyLabelIsHidden = true
-            bodyLabelZeroHeightConstraint.isActive = true
+            bodyLabel.isHidden = true
         } else {
-            bodyLabelIsHidden = false
-            bodyLabelZeroHeightConstraint.isActive = false
+            bodyLabel.isHidden = false
         }
         
-        if titleLabelIsHidden || bodyLabelIsHidden {
-            titleLabelAndBodyLabelConstraint.constant = 0
-        } else {
-            titleLabelAndBodyLabelConstraint.constant = NoteCell.padding
-        }
+        bottomStackView.isHidden = false
     }
     
     private func updateCompactGridLayout() {
@@ -92,65 +84,67 @@ class NoteCell: UICollectionViewCell {
     private func updateListLayout() {
         let isTitleLabelEmpty = String.isNullOrEmpty(titleLabel.text)
         let isBodyLabelEmpty = String.isNullOrEmpty(bodyLabel.text)
-        var titleLabelIsHidden = false
-        var bodyLabelIsHidden = false
+        let isLabelLabelEmpty = String.isNullOrEmpty(labelLabel.text)
+        let isReminderLabelEmpty = String.isNullOrEmpty(reminderLabel.text)
         
-        bodyLabelBottomConstraint.isActive = true
-        bodyLabel.numberOfLines = 0
-
+        titleLabel.setContentHuggingPriority(.init(251), for: .vertical)
+        bodyLabel.setContentHuggingPriority(.init(251), for: .vertical)
+        
         if isTitleLabelEmpty {
-            titleLabelIsHidden = true
-            titleLabelZeroHeightConstraint.isActive = true
+            titleLabel.isHidden = true
         } else {
-            titleLabelIsHidden = false
-            titleLabelZeroHeightConstraint.isActive = false
+            titleLabel.isHidden = false
         }
         
         if isBodyLabelEmpty {
-            bodyLabelIsHidden = true
-            bodyLabelZeroHeightConstraint.isActive = true
+            bodyLabel.isHidden = true
         } else {
-            bodyLabelIsHidden = false
-            bodyLabelZeroHeightConstraint.isActive = false
+            bodyLabel.isHidden = false
         }
-
-        if titleLabelIsHidden || bodyLabelIsHidden {
-            titleLabelAndBodyLabelConstraint.constant = 0
+        
+        if isLabelLabelEmpty && isReminderLabelEmpty {
+            bottomStackView.isHidden = true
         } else {
-            titleLabelAndBodyLabelConstraint.constant = NoteCell.padding
+            bottomStackView.isHidden = false
+        }
+        
+        // In list view, we can't hide everything. Something has to be shown.
+        if titleLabel.isHidden && bodyLabel.isHidden && bottomStackView.isHidden {
+            bodyLabel.isHidden = false
         }
     }
     
     private func updateCompactListLayout() {
         let isTitleLabelEmpty = String.isNullOrEmpty(titleLabel.text)
         let isBodyLabelEmpty = String.isNullOrEmpty(bodyLabel.text)
-        var titleLabelIsHidden = false
-        var bodyLabelIsHidden = false
+        let isLabelLabelEmpty = String.isNullOrEmpty(labelLabel.text)
+        let isReminderLabelEmpty = String.isNullOrEmpty(reminderLabel.text)
         
-        bodyLabelBottomConstraint.isActive = true
-        bodyLabel.numberOfLines = 0
-
+        titleLabel.setContentHuggingPriority(.init(251), for: .vertical)
+        bodyLabel.setContentHuggingPriority(.init(251), for: .vertical)
+        
         if isTitleLabelEmpty {
-            titleLabelIsHidden = true
-            titleLabelZeroHeightConstraint.isActive = true
+            titleLabel.isHidden = true
         } else {
-            titleLabelIsHidden = false
-            titleLabelZeroHeightConstraint.isActive = false
+            titleLabel.isHidden = false
         }
         
-        // In compact list, only either title or body can be shown.
-        if isBodyLabelEmpty || !titleLabelIsHidden {
-            bodyLabelIsHidden = true
-            bodyLabelZeroHeightConstraint.isActive = true
+        // We show either title or body, in compact list.
+        if isBodyLabelEmpty || !titleLabel.isHidden {
+            bodyLabel.isHidden = true
         } else {
-            bodyLabelIsHidden = false
-            bodyLabelZeroHeightConstraint.isActive = false
+            bodyLabel.isHidden = false
         }
-
-        if titleLabelIsHidden || bodyLabelIsHidden {
-            titleLabelAndBodyLabelConstraint.constant = 0
+        
+        if isLabelLabelEmpty && isReminderLabelEmpty {
+            bottomStackView.isHidden = true
         } else {
-            titleLabelAndBodyLabelConstraint.constant = NoteCell.padding
+            bottomStackView.isHidden = false
+        }
+        
+        // In list view, we can't hide everything. Something has to be shown.
+        if titleLabel.isHidden && bodyLabel.isHidden && bottomStackView.isHidden {
+            bodyLabel.isHidden = false
         }
     }
 }
