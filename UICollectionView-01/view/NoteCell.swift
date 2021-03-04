@@ -36,7 +36,7 @@ class NoteCell: UICollectionViewCell {
         titleLabel.text = plainNote.title
         bodyLabel.text = plainNote.body
         
-        labelLabel.text = "Cheok"
+        labelLabel.text = nil
     }
     
     func updateLayout(_ layout: Layout) {
