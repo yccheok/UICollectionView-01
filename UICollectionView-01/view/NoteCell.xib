@@ -37,11 +37,11 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dJu-ap-Fhi" userLabel="Bottom Stack View">
+                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="bottom" translatesAutoresizingMaskIntoConstraints="NO" id="dJu-ap-Fhi" userLabel="Bottom Stack View">
                         <rect key="frame" x="8" y="532" width="443" height="0.0"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DH2-32-1KI">
-                                <rect key="frame" x="0.0" y="0.0" width="443" height="0.0"/>
+                                <rect key="frame" x="0.0" y="0.0" width="221.5" height="0.0"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="E8i-4K-THs"/>
                                 </constraints>
@@ -49,8 +49,20 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KYR-gL-53d">
+                                <rect key="frame" x="221.5" y="0.0" width="221.5" height="0.0"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" id="x3U-8G-DVf"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemRedColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" id="oXK-bT-R6B"/>
+                        </constraints>
                     </stackView>
                 </subviews>
             </view>
@@ -75,8 +87,11 @@
                 <outlet property="bodyLabelAndBottomStackViewConstraint" destination="VIU-Ro-fAj" id="r5U-cD-4eq"/>
                 <outlet property="bodyLabelAndBottomStackViewGreaterThanConstraint" destination="9Lv-QZ-pcG" id="gcJ-o3-3tE"/>
                 <outlet property="bodyLabelZeroHeightConstraint" destination="HUd-6u-zXa" id="9en-in-DZq"/>
+                <outlet property="bottomStackViewZeroHeightConstraint" destination="oXK-bT-R6B" id="WvM-5y-d9P"/>
                 <outlet property="labelLabel" destination="DH2-32-1KI" id="xlZ-Rc-IVI"/>
                 <outlet property="labelLabelZeroHeightConstraint" destination="E8i-4K-THs" id="rkX-81-rKK"/>
+                <outlet property="reminderLabel" destination="KYR-gL-53d" id="afX-ai-AAk"/>
+                <outlet property="reminderLabelZeroHeightConstraint" destination="x3U-8G-DVf" id="h8d-ps-yoy"/>
                 <outlet property="titleLabel" destination="LRT-v8-nTP" id="6NF-ka-UOo"/>
                 <outlet property="titleLabelAndBodyLabelConstraint" destination="ep5-na-S7A" id="xmE-u4-fj0"/>
                 <outlet property="titleLabelZeroHeightConstraint" destination="TM9-Kw-Tpl" id="xjH-db-iDI"/>
