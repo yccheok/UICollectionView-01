@@ -20,7 +20,7 @@ extension String {
 
     static func isNullOrEmpty(_ string: String?) -> Bool {
         guard let string = string else {
-            return false
+            return true
         }
         return string.isTrimmedEmpty
     }
