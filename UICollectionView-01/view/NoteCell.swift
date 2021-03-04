@@ -17,7 +17,8 @@ class NoteCell: UICollectionViewCell {
     @IBOutlet var bodyLabelBottomConstraint: NSLayoutConstraint!
     @IBOutlet var titleLabelZeroHeightConstraint: NSLayoutConstraint!
     @IBOutlet var bodyLabelZeroHeightConstraint: NSLayoutConstraint!
-    @IBOutlet var titleLabelAndBodyLabelConstraint: NSLayoutConstraint!
+    @IBOutlet var stackViewAndBodyLabelConstraint: NSLayoutConstraint!
+    
     
     var layout: Layout?
     
@@ -56,30 +57,32 @@ class NoteCell: UICollectionViewCell {
     private func updateGridLayout() {
         let isTitleLabelEmpty = String.isNullOrEmpty(titleLabel.text)
         let isBodyLabelEmpty = String.isNullOrEmpty(bodyLabel.text)
+        var titleLabelIsHidden = false
+        var bodyLabelIsHidden = false
         
         bodyLabelBottomConstraint.isActive = false
         bodyLabel.numberOfLines = 0
         
         if isTitleLabelEmpty {
-            titleLabel.isHidden = true
+            titleLabelIsHidden = true
             titleLabelZeroHeightConstraint.isActive = true
         } else {
-            titleLabel.isHidden = false
+            titleLabelIsHidden = false
             titleLabelZeroHeightConstraint.isActive = false
         }
         
         if isBodyLabelEmpty {
-            bodyLabel.isHidden = true
+            bodyLabelIsHidden = true
             bodyLabelZeroHeightConstraint.isActive = true
         } else {
-            bodyLabel.isHidden = false
+            bodyLabelIsHidden = false
             bodyLabelZeroHeightConstraint.isActive = false
         }
         
-        if titleLabel.isHidden || bodyLabel.isHidden {
-            titleLabelAndBodyLabelConstraint.constant = 0
+        if titleLabelIsHidden || bodyLabelIsHidden {
+            stackViewAndBodyLabelConstraint.constant = 0
         } else {
-            titleLabelAndBodyLabelConstraint.constant = NoteCell.padding
+            stackViewAndBodyLabelConstraint.constant = NoteCell.padding
         }
     }
     
@@ -90,61 +93,65 @@ class NoteCell: UICollectionViewCell {
     private func updateListLayout() {
         let isTitleLabelEmpty = String.isNullOrEmpty(titleLabel.text)
         let isBodyLabelEmpty = String.isNullOrEmpty(bodyLabel.text)
+        var titleLabelIsHidden = false
+        var bodyLabelIsHidden = false
         
         bodyLabelBottomConstraint.isActive = true
         bodyLabel.numberOfLines = 0
 
         if isTitleLabelEmpty {
-            titleLabel.isHidden = true
+            titleLabelIsHidden = true
             titleLabelZeroHeightConstraint.isActive = true
         } else {
-            titleLabel.isHidden = false
+            titleLabelIsHidden = false
             titleLabelZeroHeightConstraint.isActive = false
         }
         
         if isBodyLabelEmpty {
-            bodyLabel.isHidden = true
+            bodyLabelIsHidden = true
             bodyLabelZeroHeightConstraint.isActive = true
         } else {
-            bodyLabel.isHidden = false
+            bodyLabelIsHidden = false
             bodyLabelZeroHeightConstraint.isActive = false
         }
 
-        if titleLabel.isHidden || bodyLabel.isHidden {
-            titleLabelAndBodyLabelConstraint.constant = 0
+        if titleLabelIsHidden || bodyLabelIsHidden {
+            stackViewAndBodyLabelConstraint.constant = 0
         } else {
-            titleLabelAndBodyLabelConstraint.constant = NoteCell.padding
+            stackViewAndBodyLabelConstraint.constant = NoteCell.padding
         }
     }
     
     private func updateCompactListLayout() {
         let isTitleLabelEmpty = String.isNullOrEmpty(titleLabel.text)
         let isBodyLabelEmpty = String.isNullOrEmpty(bodyLabel.text)
+        var titleLabelIsHidden = false
+        var bodyLabelIsHidden = false
         
         bodyLabelBottomConstraint.isActive = true
         bodyLabel.numberOfLines = 0
 
         if isTitleLabelEmpty {
-            titleLabel.isHidden = true
+            titleLabelIsHidden = true
             titleLabelZeroHeightConstraint.isActive = true
         } else {
-            titleLabel.isHidden = false
+            titleLabelIsHidden = false
             titleLabelZeroHeightConstraint.isActive = false
         }
         
         // In compact list, only either title or body can be shown.
-        if isBodyLabelEmpty || !titleLabel.isHidden {
-            bodyLabel.isHidden = true
+        if isBodyLabelEmpty || !titleLabelIsHidden {
+            bodyLabelIsHidden = true
             bodyLabelZeroHeightConstraint.isActive = true
         } else {
-            bodyLabel.isHidden = false
+            bodyLabelIsHidden = false
             bodyLabelZeroHeightConstraint.isActive = false
         }
 
-        if titleLabel.isHidden || bodyLabel.isHidden {
-            titleLabelAndBodyLabelConstraint.constant = 0
+        if titleLabelIsHidden || bodyLabelIsHidden {
+            stackViewAndBodyLabelConstraint.constant = 0
         } else {
-            titleLabelAndBodyLabelConstraint.constant = NoteCell.padding
+            stackViewAndBodyLabelConstraint.constant = NoteCell.padding
         }
     }
 }
