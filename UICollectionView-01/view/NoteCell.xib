@@ -42,6 +42,7 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <color key="backgroundColor" systemColor="systemGreenColor"/>
             <constraints>
+                <constraint firstItem="ZTg-uK-7eu" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="s0y-7n-n7J" secondAttribute="bottom" constant="8" id="PRf-dR-Krg"/>
                 <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="LRT-v8-nTP" secondAttribute="trailing" priority="999" constant="8" id="Q04-i8-mM5"/>
                 <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="s0y-7n-n7J" secondAttribute="trailing" priority="999" constant="8" id="UT4-g6-MtM"/>
                 <constraint firstItem="LRT-v8-nTP" firstAttribute="top" secondItem="ZTg-uK-7eu" secondAttribute="top" constant="8" id="YPb-qV-AKE"/>
@@ -54,6 +55,7 @@
             <connections>
                 <outlet property="bodyLabel" destination="s0y-7n-n7J" id="nip-qI-wgO"/>
                 <outlet property="bodyLabelBottomConstraint" destination="ldS-mo-FSe" id="Qvc-OA-z4f"/>
+                <outlet property="bodyLabelGreaterThanBottomConstraint" destination="PRf-dR-Krg" id="0UD-zl-PGQ"/>
                 <outlet property="bodyLabelZeroHeightConstraint" destination="HUd-6u-zXa" id="9en-in-DZq"/>
                 <outlet property="titleLabel" destination="LRT-v8-nTP" id="6NF-ka-UOo"/>
                 <outlet property="titleLabelAndBodyLabelConstraint" destination="ep5-na-S7A" id="xmE-u4-fj0"/>

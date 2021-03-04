@@ -15,6 +15,7 @@ class NoteCell: UICollectionViewCell {
     @IBOutlet weak var bodyLabel: UILabel!
     
     @IBOutlet var bodyLabelBottomConstraint: NSLayoutConstraint!
+    @IBOutlet var bodyLabelGreaterThanBottomConstraint: NSLayoutConstraint!
     @IBOutlet var titleLabelZeroHeightConstraint: NSLayoutConstraint!
     @IBOutlet var bodyLabelZeroHeightConstraint: NSLayoutConstraint!
     @IBOutlet var titleLabelAndBodyLabelConstraint: NSLayoutConstraint!
@@ -60,6 +61,7 @@ class NoteCell: UICollectionViewCell {
         var bodyLabelIsHidden = false
         
         bodyLabelBottomConstraint.isActive = false
+        bodyLabelGreaterThanBottomConstraint.isActive = true
         bodyLabel.numberOfLines = 0
         
         if isTitleLabelEmpty {
@@ -96,6 +98,7 @@ class NoteCell: UICollectionViewCell {
         var bodyLabelIsHidden = false
         
         bodyLabelBottomConstraint.isActive = true
+        bodyLabelGreaterThanBottomConstraint.isActive = false
         bodyLabel.numberOfLines = 0
 
         if isTitleLabelEmpty {
@@ -128,6 +131,7 @@ class NoteCell: UICollectionViewCell {
         var bodyLabelIsHidden = false
         
         bodyLabelBottomConstraint.isActive = true
+        bodyLabelGreaterThanBottomConstraint.isActive = false
         bodyLabel.numberOfLines = 0
 
         if isTitleLabelEmpty {
