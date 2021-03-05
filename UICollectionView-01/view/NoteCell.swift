@@ -69,6 +69,7 @@ class NoteCell: UICollectionViewCell {
         var bodyLabelIsHidden = false
         var labelLabelIsHidden = false
         var reminderLabelIsHidden = false
+        var bottomStackViewZeroIsHidden = false
         
         bodyLabelAndBottomStackViewConstraint.isActive = false
         bodyLabelAndBottomStackViewGreaterThanConstraint.isActive = true
@@ -113,8 +114,10 @@ class NoteCell: UICollectionViewCell {
         }
         
         if labelLabelIsHidden && reminderLabelIsHidden {
+            bottomStackViewZeroIsHidden = true
             bottomStackViewZeroHeightConstraint.isActive = true
         } else {
+            bottomStackViewZeroIsHidden = false
             bottomStackViewZeroHeightConstraint.isActive = false
         }
         
@@ -126,9 +129,11 @@ class NoteCell: UICollectionViewCell {
             bodyLabelAndBottomStackViewGreaterThanConstraint.constant = NoteCell.padding
         }
         
-        // We cannot have both 0.
+        // We cannot have both 0 spacing when title and bottom stack view are visible.
         if titleLabelAndBodyLabelConstraint.constant == 0 && bodyLabelAndBottomStackViewConstraint.constant == 0 {
-            titleLabelAndBodyLabelConstraint.constant = NoteCell.padding
+            if !titleLabelIsHidden && !bottomStackViewZeroIsHidden {
+                titleLabelAndBodyLabelConstraint.constant = NoteCell.padding
+            }
         }
     }
     
@@ -146,7 +151,8 @@ class NoteCell: UICollectionViewCell {
         var bodyLabelIsHidden = false
         var labelLabelIsHidden = false
         var reminderLabelIsHidden = false
-
+        var bottomStackViewZeroIsHidden = false
+        
         bodyLabelAndBottomStackViewConstraint.isActive = true
         bodyLabelAndBottomStackViewGreaterThanConstraint.isActive = false
         bodyLabel.numberOfLines = 0
@@ -190,12 +196,14 @@ class NoteCell: UICollectionViewCell {
         }
         
         if labelLabelIsHidden && reminderLabelIsHidden {
+            bottomStackViewZeroIsHidden = true
             bottomStackViewZeroHeightConstraint.isActive = true
         } else {
+            bottomStackViewZeroIsHidden = false
             bottomStackViewZeroHeightConstraint.isActive = false
         }
         
-        if bodyLabelIsHidden || (labelLabelIsHidden && reminderLabelIsHidden) {
+        if bodyLabelIsHidden || bottomStackViewZeroIsHidden {
             bodyLabelAndBottomStackViewConstraint.constant = 0
             bodyLabelAndBottomStackViewGreaterThanConstraint.constant = 0
         } else {
@@ -203,9 +211,11 @@ class NoteCell: UICollectionViewCell {
             bodyLabelAndBottomStackViewGreaterThanConstraint.constant = NoteCell.padding
         }
         
-        // We cannot have both 0.
+        // We cannot have both 0 spacing when title and bottom stack view are visible.
         if titleLabelAndBodyLabelConstraint.constant == 0 && bodyLabelAndBottomStackViewConstraint.constant == 0 {
-            titleLabelAndBodyLabelConstraint.constant = NoteCell.padding
+            if !titleLabelIsHidden && !bottomStackViewZeroIsHidden {
+                titleLabelAndBodyLabelConstraint.constant = NoteCell.padding
+            }
         }
     }
     
@@ -219,6 +229,7 @@ class NoteCell: UICollectionViewCell {
         var bodyLabelIsHidden = false
         var labelLabelIsHidden = false
         var reminderLabelIsHidden = false
+        var bottomStackViewZeroIsHidden = false
         
         bodyLabelAndBottomStackViewConstraint.isActive = true
         bodyLabelAndBottomStackViewGreaterThanConstraint.isActive = false
@@ -264,8 +275,10 @@ class NoteCell: UICollectionViewCell {
         }
         
         if labelLabelIsHidden && reminderLabelIsHidden {
+            bottomStackViewZeroIsHidden = true
             bottomStackViewZeroHeightConstraint.isActive = true
         } else {
+            bottomStackViewZeroIsHidden = false
             bottomStackViewZeroHeightConstraint.isActive = false
         }
         
@@ -277,9 +290,11 @@ class NoteCell: UICollectionViewCell {
             bodyLabelAndBottomStackViewGreaterThanConstraint.constant = NoteCell.padding
         }
         
-        // We cannot have both 0.
+        // We cannot have both 0 spacing when title and bottom stack view are visible.
         if titleLabelAndBodyLabelConstraint.constant == 0 && bodyLabelAndBottomStackViewConstraint.constant == 0 {
-            titleLabelAndBodyLabelConstraint.constant = NoteCell.padding
+            if !titleLabelIsHidden && !bottomStackViewZeroIsHidden {
+                titleLabelAndBodyLabelConstraint.constant = NoteCell.padding
+            }
         }
     }
 }
