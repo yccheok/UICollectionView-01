@@ -113,13 +113,22 @@ class NoteCell: UICollectionViewCell {
         }
         
         if labelLabelIsHidden && reminderLabelIsHidden {
+            bottomStackViewZeroHeightConstraint.isActive = true
+        } else {
+            bottomStackViewZeroHeightConstraint.isActive = false
+        }
+        
+        if bodyLabelIsHidden || (labelLabelIsHidden && reminderLabelIsHidden) {
             bodyLabelAndBottomStackViewConstraint.constant = 0
             bodyLabelAndBottomStackViewGreaterThanConstraint.constant = 0
-            bottomStackViewZeroHeightConstraint.isActive = true
         } else {
             bodyLabelAndBottomStackViewConstraint.constant = NoteCell.padding
             bodyLabelAndBottomStackViewGreaterThanConstraint.constant = NoteCell.padding
-            bottomStackViewZeroHeightConstraint.isActive = false
+        }
+        
+        // We cannot have both 0.
+        if titleLabelAndBodyLabelConstraint.constant == 0 && bodyLabelAndBottomStackViewConstraint.constant == 0 {
+            titleLabelAndBodyLabelConstraint.constant = NoteCell.padding
         }
     }
     
@@ -137,7 +146,7 @@ class NoteCell: UICollectionViewCell {
         var bodyLabelIsHidden = false
         var labelLabelIsHidden = false
         var reminderLabelIsHidden = false
-        
+
         bodyLabelAndBottomStackViewConstraint.isActive = true
         bodyLabelAndBottomStackViewGreaterThanConstraint.isActive = false
         bodyLabel.numberOfLines = 0
@@ -181,18 +190,22 @@ class NoteCell: UICollectionViewCell {
         }
         
         if labelLabelIsHidden && reminderLabelIsHidden {
-            bodyLabelAndBottomStackViewConstraint.constant = 0
-            bodyLabelAndBottomStackViewGreaterThanConstraint.constant = 0
             bottomStackViewZeroHeightConstraint.isActive = true
         } else {
-            if bodyLabelIsHidden {
-                bodyLabelAndBottomStackViewConstraint.constant = 0
-                bodyLabelAndBottomStackViewGreaterThanConstraint.constant = 0
-            } else {
-                bodyLabelAndBottomStackViewConstraint.constant = NoteCell.padding
-                bodyLabelAndBottomStackViewGreaterThanConstraint.constant = NoteCell.padding
-            }
             bottomStackViewZeroHeightConstraint.isActive = false
+        }
+        
+        if bodyLabelIsHidden || (labelLabelIsHidden && reminderLabelIsHidden) {
+            bodyLabelAndBottomStackViewConstraint.constant = 0
+            bodyLabelAndBottomStackViewGreaterThanConstraint.constant = 0
+        } else {
+            bodyLabelAndBottomStackViewConstraint.constant = NoteCell.padding
+            bodyLabelAndBottomStackViewGreaterThanConstraint.constant = NoteCell.padding
+        }
+        
+        // We cannot have both 0.
+        if titleLabelAndBodyLabelConstraint.constant == 0 && bodyLabelAndBottomStackViewConstraint.constant == 0 {
+            titleLabelAndBodyLabelConstraint.constant = NoteCell.padding
         }
     }
     
@@ -251,18 +264,22 @@ class NoteCell: UICollectionViewCell {
         }
         
         if labelLabelIsHidden && reminderLabelIsHidden {
-            bodyLabelAndBottomStackViewConstraint.constant = 0
-            bodyLabelAndBottomStackViewGreaterThanConstraint.constant = 0
             bottomStackViewZeroHeightConstraint.isActive = true
         } else {
-            if bodyLabelIsHidden {
-                bodyLabelAndBottomStackViewConstraint.constant = 0
-                bodyLabelAndBottomStackViewGreaterThanConstraint.constant = 0
-            } else {
-                bodyLabelAndBottomStackViewConstraint.constant = NoteCell.padding
-                bodyLabelAndBottomStackViewGreaterThanConstraint.constant = NoteCell.padding
-            }
             bottomStackViewZeroHeightConstraint.isActive = false
+        }
+        
+        if bodyLabelIsHidden || (labelLabelIsHidden && reminderLabelIsHidden) {
+            bodyLabelAndBottomStackViewConstraint.constant = 0
+            bodyLabelAndBottomStackViewGreaterThanConstraint.constant = 0
+        } else {
+            bodyLabelAndBottomStackViewConstraint.constant = NoteCell.padding
+            bodyLabelAndBottomStackViewGreaterThanConstraint.constant = NoteCell.padding
+        }
+        
+        // We cannot have both 0.
+        if titleLabelAndBodyLabelConstraint.constant == 0 && bodyLabelAndBottomStackViewConstraint.constant == 0 {
+            titleLabelAndBodyLabelConstraint.constant = NoteCell.padding
         }
     }
 }
