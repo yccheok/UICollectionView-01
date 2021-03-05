@@ -36,7 +36,7 @@ class NoteCell: UICollectionViewCell {
         titleLabel.text = plainNote.title
         bodyLabel.text = plainNote.body
         
-        labelLabel.text = "Work"
+        labelLabel.text = "Tag"
         reminderLabel.text = nil//"Sat"
     }
     
