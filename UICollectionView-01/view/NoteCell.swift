@@ -25,8 +25,6 @@ class NoteCell: UICollectionViewCell {
     @IBOutlet var reminderLabelZeroHeightConstraint: NSLayoutConstraint!
     @IBOutlet var bottomStackViewZeroHeightConstraint: NSLayoutConstraint!
     
-    var layout: Layout?
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -41,10 +39,6 @@ class NoteCell: UICollectionViewCell {
     }
     
     func updateLayout(_ layout: Layout) {
-        if self.layout == layout {
-            return
-        }
-        
         switch layout {
         case .grid:
             updateGridLayout()
@@ -55,8 +49,6 @@ class NoteCell: UICollectionViewCell {
         case .compactList:
             updateCompactListLayout()
         }
-        
-        self.layout = layout
     }
     
     private func updateGridLayout() {
