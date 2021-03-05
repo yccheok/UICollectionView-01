@@ -38,6 +38,8 @@ class ViewController: UIViewController {
     @IBAction func layoutButtonPressed(_ sender: Any) {
         layout = layout.next()
         
+        setupLayout()
+        
         // We call reloadData instead of collectionView.collectionViewLayout.invalidateLayout(). We need to ensure
         // updateLayout is executed within setupDataSource.
         collectionView.reloadData()
@@ -91,12 +93,72 @@ class ViewController: UIViewController {
     }
     
     private func setupLayout() {
-        guard let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
-            return
+        switch layout {
+        case .grid:
+            return setupGridLayout()
+        case .compactGrid:
+            return setupCompactGridLayout()
+        case .list:
+            return setupListLayout()
+        case .compactList:
+            return setupCompactListLayout()
         }
-        flowLayout.sectionInset = .init(top: 0, left: ViewController.padding, bottom: 0, right: ViewController.padding)
-        flowLayout.minimumLineSpacing = ViewController.padding
-        flowLayout.minimumInteritemSpacing = 0
+    }
+    
+    private func setupGridLayout() {
+        let tmp = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
+        
+        if (tmp == nil) {
+            let flowLayout = UICollectionViewFlowLayout()
+            
+            // Switch the layout to UICollectionViewFlowLayout
+            collectionView.collectionViewLayout = flowLayout
+            
+            flowLayout.sectionInset = .init(top: 0, left: ViewController.padding, bottom: 0, right: ViewController.padding)
+            flowLayout.minimumLineSpacing = ViewController.padding
+            flowLayout.minimumInteritemSpacing = 0
+        }
+    }
+    
+    private func setupCompactGridLayout() {
+        setupGridLayout()
+    }
+    
+    private func setupListLayout() {
+        let tmp = collectionView.collectionViewLayout as? UICollectionViewCompositionalLayout
+        
+        if (tmp == nil) {
+            let size = NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1.0),
+                heightDimension: .estimated(1)
+            )
+            let item = NSCollectionLayoutItem(layoutSize: size)
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: size, subitem: item, count: 1)
+
+            let section = NSCollectionLayoutSection(group: group)
+            section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: ViewController.padding, bottom: 0, trailing: ViewController.padding)
+            section.interGroupSpacing = ViewController.padding
+            
+            let headerFooterSize = NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1.0),
+                heightDimension: .estimated(1)
+            )
+            let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
+                layoutSize: headerFooterSize,
+                elementKind: UICollectionView.elementKindSectionHeader,
+                alignment: .top
+            )
+            section.boundarySupplementaryItems = [sectionHeader]
+            
+            let compositionalLayout = UICollectionViewCompositionalLayout(section: section)
+
+            // Switch the layout to UICollectionViewCompositionalLayout
+            collectionView.collectionViewLayout = compositionalLayout
+        }
+    }
+    
+    private func setupCompactListLayout() {
+        setupListLayout()
     }
     
     private func setupDataSource() {
