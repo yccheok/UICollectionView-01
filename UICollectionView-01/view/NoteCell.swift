@@ -127,7 +127,7 @@ class NoteCell: UICollectionViewCell {
         updateGridLayout()
     }
     
-    private func updateListLayout() {
+    private func updateListLayout() {       
         let isTitleLabelEmpty = String.isNullOrEmpty(titleLabel.text)
         let isBodyLabelEmpty = String.isNullOrEmpty(bodyLabel.text)
         let isLabelLabelEmpty = String.isNullOrEmpty(labelLabel.text)
@@ -142,7 +142,7 @@ class NoteCell: UICollectionViewCell {
         bodyLabelAndBottomStackViewGreaterThanConstraint.isActive = false
         bodyLabel.numberOfLines = 0
 
-        if isTitleLabelEmpty {
+        if isTitleLabelEmpty {          
             titleLabelIsHidden = true
             titleLabelZeroHeightConstraint.isActive = true
         } else {
@@ -150,7 +150,7 @@ class NoteCell: UICollectionViewCell {
             titleLabelZeroHeightConstraint.isActive = false
         }
         
-        if isBodyLabelEmpty {
+        if isBodyLabelEmpty {           
             bodyLabelIsHidden = true
             bodyLabelZeroHeightConstraint.isActive = true
         } else {
@@ -161,12 +161,12 @@ class NoteCell: UICollectionViewCell {
         if isLabelLabelEmpty {
             labelLabelIsHidden = true
             labelLabelZeroHeightConstraint.isActive = true
-        } else {
+        } else {         
             labelLabelIsHidden = false
             labelLabelZeroHeightConstraint.isActive = false
         }
         
-        if isReminderLabelEmpty {
+        if isReminderLabelEmpty {           
             reminderLabelIsHidden = true
             reminderLabelZeroHeightConstraint.isActive = true
         } else {
@@ -174,7 +174,7 @@ class NoteCell: UICollectionViewCell {
             reminderLabelZeroHeightConstraint.isActive = false
         }
         
-        if titleLabelIsHidden || bodyLabelIsHidden {
+        if titleLabelIsHidden || bodyLabelIsHidden {           
             titleLabelAndBodyLabelConstraint.constant = 0
         } else {
             titleLabelAndBodyLabelConstraint.constant = NoteCell.padding
@@ -185,8 +185,13 @@ class NoteCell: UICollectionViewCell {
             bodyLabelAndBottomStackViewGreaterThanConstraint.constant = 0
             bottomStackViewZeroHeightConstraint.isActive = true
         } else {
-            bodyLabelAndBottomStackViewConstraint.constant = NoteCell.padding
-            bodyLabelAndBottomStackViewGreaterThanConstraint.constant = NoteCell.padding
+            if bodyLabelIsHidden {
+                bodyLabelAndBottomStackViewConstraint.constant = 0
+                bodyLabelAndBottomStackViewGreaterThanConstraint.constant = 0
+            } else {
+                bodyLabelAndBottomStackViewConstraint.constant = NoteCell.padding
+                bodyLabelAndBottomStackViewGreaterThanConstraint.constant = NoteCell.padding
+            }
             bottomStackViewZeroHeightConstraint.isActive = false
         }
     }
@@ -250,8 +255,13 @@ class NoteCell: UICollectionViewCell {
             bodyLabelAndBottomStackViewGreaterThanConstraint.constant = 0
             bottomStackViewZeroHeightConstraint.isActive = true
         } else {
-            bodyLabelAndBottomStackViewConstraint.constant = NoteCell.padding
-            bodyLabelAndBottomStackViewGreaterThanConstraint.constant = NoteCell.padding
+            if bodyLabelIsHidden {
+                bodyLabelAndBottomStackViewConstraint.constant = 0
+                bodyLabelAndBottomStackViewGreaterThanConstraint.constant = 0
+            } else {
+                bodyLabelAndBottomStackViewConstraint.constant = NoteCell.padding
+                bodyLabelAndBottomStackViewGreaterThanConstraint.constant = NoteCell.padding
+            }
             bottomStackViewZeroHeightConstraint.isActive = false
         }
     }
