@@ -114,7 +114,7 @@ class ViewController: UIViewController {
             // Switch the layout to UICollectionViewFlowLayout
             collectionView.collectionViewLayout = flowLayout
             
-            flowLayout.sectionInset = .init(top: 0, left: ViewController.padding, bottom: 0, right: ViewController.padding)
+            flowLayout.sectionInset = .init(top: 0, left: ViewController.padding, bottom: ViewController.padding, right: ViewController.padding)
             flowLayout.minimumLineSpacing = ViewController.padding
             flowLayout.minimumInteritemSpacing = 0
         }
@@ -136,7 +136,7 @@ class ViewController: UIViewController {
             let group = NSCollectionLayoutGroup.horizontal(layoutSize: size, subitem: item, count: 1)
 
             let section = NSCollectionLayoutSection(group: group)
-            section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: ViewController.padding, bottom: 0, trailing: ViewController.padding)
+            section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: ViewController.padding, bottom: ViewController.padding, trailing: ViewController.padding)
             section.interGroupSpacing = ViewController.padding
             
             let headerFooterSize = NSCollectionLayoutSize(
@@ -230,15 +230,15 @@ class ViewController: UIViewController {
 
 extension ViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        precondition(layout == .grid || layout == .compactGrid)
+        
         switch layout {
         case .grid:
             return gridLayout()
         case .compactGrid:
             return compactGridLayout()
-        case .list:
-            return listLayout(indexPath)
-        case .compactList:
-            return compactListLayout(indexPath)
+        default:
+            return .zero
         }
     }
     
@@ -268,43 +268,9 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
         }
     }
     
-    private func listLayout(_ indexPath: IndexPath) -> CGSize {
-        let plainNote: PlainNote
-        
-        if (indexPath.section == 0) {
-            if (!pinnedNotes.isEmpty) {
-                plainNote = pinnedNotes[indexPath.item]
-            } else {
-                precondition(!normalNotes.isEmpty)
-                
-                plainNote = normalNotes[indexPath.item]
-            }
-        } else {
-            plainNote = normalNotes[indexPath.item]
-        }
-        
-        let noteCell = self.tmpNoteCell ?? NoteCell.instanceFromNib()
-        
-        self.tmpNoteCell = noteCell
-        
-        noteCell.setup(plainNote)
-        
-        noteCell.updateLayout(self.layout)
-        
-        let cgSize = noteCell.systemLayoutSizeFitting(
-           CGSize(width: collectionView.frame.width - ViewController.padding*2.0, height: UIView.layoutFittingExpandedSize.height),
-           withHorizontalFittingPriority: .required,
-           verticalFittingPriority: .fittingSizeLevel
-       )
-        
-        return CGSize(width: cgSize.width, height: max(cgSize.height, ViewController.minListHeight))
-    }
-    
-    private func compactListLayout(_ indexPath: IndexPath) -> CGSize {
-        listLayout(indexPath)
-    }
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        precondition(layout == .grid || layout == .compactGrid)
+        
         if pinnedNotes.isEmpty {
             // Do not show header.
             
