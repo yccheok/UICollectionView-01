@@ -24,8 +24,8 @@
             </subviews>
             <viewLayoutGuide key="safeArea" id="VXr-Tz-HHm"/>
             <constraints>
-                <constraint firstItem="VXr-Tz-HHm" firstAttribute="trailing" secondItem="JgD-2u-6mi" secondAttribute="trailing" constant="8" id="HAH-nz-NtH"/>
-                <constraint firstItem="VXr-Tz-HHm" firstAttribute="bottom" secondItem="JgD-2u-6mi" secondAttribute="bottom" constant="8" id="Tnx-K3-D7C"/>
+                <constraint firstItem="VXr-Tz-HHm" firstAttribute="trailing" secondItem="JgD-2u-6mi" secondAttribute="trailing" priority="999" constant="8" id="HAH-nz-NtH"/>
+                <constraint firstItem="VXr-Tz-HHm" firstAttribute="bottom" secondItem="JgD-2u-6mi" secondAttribute="bottom" priority="999" constant="8" id="Tnx-K3-D7C"/>
                 <constraint firstItem="JgD-2u-6mi" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" constant="8" id="U0g-II-Raq"/>
                 <constraint firstItem="VXr-Tz-HHm" firstAttribute="top" secondItem="JgD-2u-6mi" secondAttribute="top" constant="-8" id="pzl-h2-1go"/>
             </constraints>
