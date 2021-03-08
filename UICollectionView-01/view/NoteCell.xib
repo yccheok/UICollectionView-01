@@ -17,7 +17,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="459" height="574"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="SmG-p3-htg">
+                    <stackView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="SmG-p3-htg">
                         <rect key="frame" x="129" y="232" width="200" height="110"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6tP-VJ-SXW" userLabel="Main Container">
@@ -111,10 +111,10 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" horizontalHuggingPriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="ufr-1Q-a4Y" userLabel="Date Time Container">
-                                <rect key="frame" x="409.5" y="0.0" width="49.5" height="50"/>
+                                <rect key="frame" x="409.5" y="0.0" width="49.5" height="24"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="1000" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="swk-vf-6Kb">
-                                        <rect key="frame" x="0.0" y="8" width="41.5" height="34"/>
+                                        <rect key="frame" x="0.0" y="8" width="41.5" height="20.5"/>
                                         <color key="backgroundColor" systemColor="systemPinkColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -125,7 +125,6 @@
                                     <constraint firstAttribute="trailing" secondItem="swk-vf-6Kb" secondAttribute="trailing" constant="8" id="2TV-a4-Waj"/>
                                     <constraint firstItem="swk-vf-6Kb" firstAttribute="leading" secondItem="ufr-1Q-a4Y" secondAttribute="leading" id="pNP-xA-52k"/>
                                     <constraint firstItem="swk-vf-6Kb" firstAttribute="top" secondItem="ufr-1Q-a4Y" secondAttribute="top" constant="8" id="qdQ-67-llI"/>
-                                    <constraint firstAttribute="bottom" secondItem="swk-vf-6Kb" secondAttribute="bottom" constant="8" id="qkk-fN-b07"/>
                                 </constraints>
                             </view>
                         </subviews>
