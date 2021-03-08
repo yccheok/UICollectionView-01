@@ -112,7 +112,7 @@ class ViewController: UIViewController {
             // Switch the layout to UICollectionViewFlowLayout
             collectionView.collectionViewLayout = flowLayout
             
-            flowLayout.sectionInset = .init(top: 0, left: ViewController.padding, bottom: ViewController.padding, right: ViewController.padding)
+            flowLayout.sectionInset = .init(top: ViewController.padding, left: ViewController.padding, bottom: ViewController.padding, right: ViewController.padding)
             flowLayout.minimumLineSpacing = ViewController.padding
             flowLayout.minimumInteritemSpacing = 0
         }
@@ -134,7 +134,7 @@ class ViewController: UIViewController {
             let group = NSCollectionLayoutGroup.horizontal(layoutSize: size, subitem: item, count: 1)
 
             let section = NSCollectionLayoutSection(group: group)
-            section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: ViewController.padding, bottom: ViewController.padding, trailing: ViewController.padding)
+            section.contentInsets = NSDirectionalEdgeInsets(top: ViewController.padding, leading: ViewController.padding, bottom: ViewController.padding, trailing: ViewController.padding)
             section.interGroupSpacing = ViewController.padding
             
             let headerFooterSize = NSCollectionLayoutSize(
