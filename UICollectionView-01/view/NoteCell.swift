@@ -242,7 +242,7 @@ class NoteCell: UICollectionViewCell {
         
         // We cannot have both 0 spacing when title and bottom stack view are visible.
         if topStackViewAndBodyLabelConstraint.constant == 0 && bodyLabelAndBottomStackViewConstraint.constant == 0 {
-            if !titleLabelIsHidden && !bottomStackViewIsHidden {
+            if !topStackViewIsHidden && !bottomStackViewIsHidden {
                 topStackViewAndBodyLabelConstraint.constant = NoteCell.padding
             }
         }
@@ -330,7 +330,7 @@ class NoteCell: UICollectionViewCell {
         
         // We cannot have both 0 spacing when title and bottom stack view are visible.
         if topStackViewAndBodyLabelConstraint.constant == 0 && bodyLabelAndBottomStackViewConstraint.constant == 0 {
-            if !titleLabelIsHidden && !bottomStackViewIsHidden {
+            if !topStackViewIsHidden && !bottomStackViewIsHidden {
                 topStackViewAndBodyLabelConstraint.constant = NoteCell.padding
             }
         }
