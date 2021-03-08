@@ -31,7 +31,7 @@ For Grid layout and Compact grid layout, we are using `UICollectionViewFlowLayou
 
 For List layout and Compact list layout, we are using `UICollectionViewCompositionalLayout`.
 
-This able to "solve" the animation bug encountered in Master branch. However, it doesn't come with additional problem.
+This able to "solve" the animation bug encountered in Master branch. However, it does come with additional problem.
 
 1. We have no idea how to hide the header in `UICollectionViewCompositionalLayout`. In `UICollectionViewFlowLayout`, we can hide the header using the following function.
 
