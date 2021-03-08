@@ -27,6 +27,8 @@ class ViewController: UIViewController {
     
     var dataSource: DataSource?
 
+    var tmpNoteCell: NoteCell?
+    
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         
@@ -35,6 +37,8 @@ class ViewController: UIViewController {
     
     @IBAction func layoutButtonPressed(_ sender: Any) {
         layout = layout.next()
+        
+        setupLayout()
         
         // We call reloadData instead of collectionView.collectionViewLayout.invalidateLayout(). We need to ensure
         // updateLayout is executed within setupDataSource.
@@ -89,12 +93,72 @@ class ViewController: UIViewController {
     }
     
     private func setupLayout() {
-        guard let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
-            return
+        switch layout {
+        case .grid:
+            return setupGridLayout()
+        case .compactGrid:
+            return setupCompactGridLayout()
+        case .list:
+            return setupListLayout()
+        case .compactList:
+            return setupCompactListLayout()
         }
-        flowLayout.sectionInset = .init(top: 0, left: ViewController.padding, bottom: 0, right: ViewController.padding)
-        flowLayout.minimumLineSpacing = ViewController.padding
-        flowLayout.minimumInteritemSpacing = 0
+    }
+    
+    private func setupGridLayout() {
+        let tmp = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
+        
+        if (tmp == nil) {
+            let flowLayout = UICollectionViewFlowLayout()
+            
+            // Switch the layout to UICollectionViewFlowLayout
+            collectionView.collectionViewLayout = flowLayout
+            
+            flowLayout.sectionInset = .init(top: 0, left: ViewController.padding, bottom: ViewController.padding, right: ViewController.padding)
+            flowLayout.minimumLineSpacing = ViewController.padding
+            flowLayout.minimumInteritemSpacing = 0
+        }
+    }
+    
+    private func setupCompactGridLayout() {
+        setupGridLayout()
+    }
+    
+    private func setupListLayout() {
+        let tmp = collectionView.collectionViewLayout as? UICollectionViewCompositionalLayout
+        
+        if (tmp == nil) {
+            let size = NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1.0),
+                heightDimension: .estimated(1)
+            )
+            let item = NSCollectionLayoutItem(layoutSize: size)
+            let group = NSCollectionLayoutGroup.horizontal(layoutSize: size, subitem: item, count: 1)
+
+            let section = NSCollectionLayoutSection(group: group)
+            section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: ViewController.padding, bottom: ViewController.padding, trailing: ViewController.padding)
+            section.interGroupSpacing = ViewController.padding
+            
+            let headerFooterSize = NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1.0),
+                heightDimension: .estimated(1)
+            )
+            let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
+                layoutSize: headerFooterSize,
+                elementKind: UICollectionView.elementKindSectionHeader,
+                alignment: .top
+            )
+            section.boundarySupplementaryItems = [sectionHeader]
+            
+            let compositionalLayout = UICollectionViewCompositionalLayout(section: section)
+
+            // Switch the layout to UICollectionViewCompositionalLayout
+            collectionView.collectionViewLayout = compositionalLayout
+        }
+    }
+    
+    private func setupCompactListLayout() {
+        setupListLayout()
     }
     
     private func setupDataSource() {
@@ -166,15 +230,15 @@ class ViewController: UIViewController {
 
 extension ViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        precondition(layout == .grid || layout == .compactGrid)
+        
         switch layout {
         case .grid:
             return gridLayout()
         case .compactGrid:
             return compactGridLayout()
-        case .list:
-            return listLayout(indexPath)
-        case .compactList:
-            return compactListLayout(indexPath)
+        default:
+            return .zero
         }
     }
     
@@ -204,45 +268,9 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
         }
     }
     
-    private func listLayout(_ indexPath: IndexPath) -> CGSize {
-        let plainNote: PlainNote
-        
-        if (indexPath.section == 0) {
-            if (!pinnedNotes.isEmpty) {
-                plainNote = pinnedNotes[indexPath.item]
-            } else {
-                precondition(!normalNotes.isEmpty)
-                
-                plainNote = normalNotes[indexPath.item]
-            }
-        } else {
-            plainNote = normalNotes[indexPath.item]
-        }
-        
-        guard let noteCell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: ViewController.NOTE_CELL,
-            for: indexPath) as? NoteCell else {
-            return CGSize(width: 0, height: 0)
-        }
-        
-        noteCell.setup(plainNote)
-        
-        noteCell.updateLayout(self.layout)
-        
-        let cgSize = noteCell.systemLayoutSizeFitting(
-           CGSize(width: collectionView.frame.width - ViewController.padding*2.0, height: UIView.layoutFittingExpandedSize.height),
-           withHorizontalFittingPriority: .required,
-           verticalFittingPriority: .fittingSizeLevel
-       )
-        
-        return CGSize(width: cgSize.width, height: max(cgSize.height, ViewController.minListHeight))
-    }
-    
-    private func compactListLayout(_ indexPath: IndexPath) -> CGSize {
-        listLayout(indexPath)
-    }
-    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+        precondition(layout == .grid || layout == .compactGrid)
+        
         if pinnedNotes.isEmpty {
             // Do not show header.
             
