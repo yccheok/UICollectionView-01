@@ -22,6 +22,9 @@ class NoteCell: UICollectionViewCell {
     @IBOutlet var labelLabel: UILabel!
     @IBOutlet var reminderLabel: UILabel!
     
+    @IBOutlet var dateTimeContainer: UIView!
+    @IBOutlet var dateTimeLabel: UILabel!
+    
     @IBOutlet var topStackViewAndBodyLabelConstraint: NSLayoutConstraint!
     @IBOutlet var bodyLabelAndBottomStackViewConstraint: NSLayoutConstraint!
     @IBOutlet var bodyLabelAndBottomStackViewGreaterThanConstraint: NSLayoutConstraint!
@@ -55,6 +58,8 @@ class NoteCell: UICollectionViewCell {
         
         labelLabel.text = "Tag"
         reminderLabel.text = nil//"Sat"
+        
+        dateTimeLabel.text = "12 Feb 2019"
     }
     
     func updateLayout(_ layout: Layout) {
@@ -126,6 +131,8 @@ class NoteCell: UICollectionViewCell {
             topStackViewIsHidden = false
             topStackViewZeroHeightConstraint.isActive = false
         }
+        
+        dateTimeContainer.isHidden = true
         
         if labelLabelIsHidden && reminderLabelIsHidden {
             bottomStackViewIsHidden = true
@@ -218,6 +225,8 @@ class NoteCell: UICollectionViewCell {
             topStackViewZeroHeightConstraint.isActive = false
         }
         
+        dateTimeContainer.isHidden = false
+        
         if labelLabelIsHidden && reminderLabelIsHidden {
             bottomStackViewIsHidden = true
             bottomStackViewZeroHeightConstraint.isActive = true
@@ -297,6 +306,8 @@ class NoteCell: UICollectionViewCell {
             reminderLabelIsHidden = false
             reminderLabelZeroHeightConstraint.isActive = false
         }
+        
+        dateTimeContainer.isHidden = false
         
         if titleLabelIsHidden && smallLockImageView.isHidden && micImageView.isHidden && attachmentImageView.isHidden && reminderImageView.isHidden && pinImageView.isHidden {
             topStackViewIsHidden = true
