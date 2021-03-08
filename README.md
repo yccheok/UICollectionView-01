@@ -71,4 +71,4 @@ This able to "solve" the animation bug encountered in Master branch. However, it
     }
 ```
 
-2. When we perform switch from `UICollectionViewCompositionalLayout` to `UICollectionViewFlowLayout`, the scroll position of collection view changed!
+2. When we perform switch from `UICollectionViewCompositionalLayout` to `UICollectionViewFlowLayout`, the scroll position of collection view changed! We expect the scroll position of collection view unchanged, when we are switching to different layout.
