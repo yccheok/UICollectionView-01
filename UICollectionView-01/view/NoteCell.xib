@@ -17,11 +17,11 @@
                 <rect key="frame" x="0.0" y="0.0" width="459" height="574"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="EbL-9O-l4y" userLabel="Top Stack View">
+                    <stackView opaque="NO" contentMode="scaleToFill" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="EbL-9O-l4y" userLabel="Top Stack View">
                         <rect key="frame" x="8" y="516" width="443" height="0.0"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="752" text="Title hello world good bye world" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LRT-v8-nTP" userLabel="Title">
-                                <rect key="frame" x="0.0" y="0.0" width="443" height="0.0"/>
+                                <rect key="frame" x="0.0" y="0.0" width="328.5" height="0.0"/>
                                 <color key="backgroundColor" systemColor="systemPurpleColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" id="TM9-Kw-Tpl"/>
@@ -30,6 +30,21 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="251" image="lock.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="MlM-VB-13s">
+                                <rect key="frame" x="332.5" y="-1" width="18.5" height="1.5"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="251" image="mic" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="dMB-Br-USM">
+                                <rect key="frame" x="355" y="-0.5" width="17" height="0.0"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="251" image="paperclip" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="okU-cU-dlo">
+                                <rect key="frame" x="376" y="-0.5" width="20" height="1"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="251" image="alarm" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="gvN-Jq-WNU">
+                                <rect key="frame" x="400" y="-1" width="19" height="0.5"/>
+                            </imageView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="1000" verticalHuggingPriority="251" image="pin.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="aOc-Ce-tXt">
+                                <rect key="frame" x="423" y="-0.5" width="20" height="1.5"/>
+                            </imageView>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="height" id="xqE-Um-REQ"/>
@@ -91,6 +106,7 @@
             </constraints>
             <size key="customSize" width="459" height="574"/>
             <connections>
+                <outlet property="attachmentImageView" destination="okU-cU-dlo" id="GBE-WC-Era"/>
                 <outlet property="bodyLabel" destination="s0y-7n-n7J" id="nip-qI-wgO"/>
                 <outlet property="bodyLabelAndBottomStackViewConstraint" destination="VIU-Ro-fAj" id="r5U-cD-4eq"/>
                 <outlet property="bodyLabelAndBottomStackViewGreaterThanConstraint" destination="9Lv-QZ-pcG" id="gcJ-o3-3tE"/>
@@ -98,8 +114,12 @@
                 <outlet property="bottomStackViewZeroHeightConstraint" destination="oXK-bT-R6B" id="WvM-5y-d9P"/>
                 <outlet property="labelLabel" destination="DH2-32-1KI" id="xlZ-Rc-IVI"/>
                 <outlet property="labelLabelZeroHeightConstraint" destination="E8i-4K-THs" id="rkX-81-rKK"/>
+                <outlet property="micImageView" destination="dMB-Br-USM" id="MPf-u9-aWL"/>
+                <outlet property="pinImageView" destination="aOc-Ce-tXt" id="2XJ-HM-hmd"/>
+                <outlet property="reminderImageView" destination="gvN-Jq-WNU" id="ykF-0D-SPC"/>
                 <outlet property="reminderLabel" destination="KYR-gL-53d" id="afX-ai-AAk"/>
                 <outlet property="reminderLabelZeroHeightConstraint" destination="x3U-8G-DVf" id="h8d-ps-yoy"/>
+                <outlet property="smallLockImageView" destination="MlM-VB-13s" id="LZb-Al-Lvp"/>
                 <outlet property="titleLabel" destination="LRT-v8-nTP" id="6NF-ka-UOo"/>
                 <outlet property="titleLabelZeroHeightConstraint" destination="TM9-Kw-Tpl" id="xjH-db-iDI"/>
                 <outlet property="topStackViewAndBodyLabelConstraint" destination="98p-Ud-c8z" id="6uJ-p6-V0u"/>
@@ -109,6 +129,11 @@
         </collectionViewCell>
     </objects>
     <resources>
+        <image name="alarm" catalog="system" width="124" height="128"/>
+        <image name="lock.fill" catalog="system" width="128" height="128"/>
+        <image name="mic" catalog="system" width="108" height="128"/>
+        <image name="paperclip" catalog="system" width="121" height="128"/>
+        <image name="pin.fill" catalog="system" width="119" height="128"/>
         <systemColor name="systemGreenColor">
             <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

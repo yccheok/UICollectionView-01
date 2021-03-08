@@ -12,6 +12,12 @@ class NoteCell: UICollectionViewCell {
     private static let padding = CGFloat(8.0)
     
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet var smallLockImageView: UIImageView!
+    @IBOutlet var micImageView: UIImageView!
+    @IBOutlet var attachmentImageView: UIImageView!
+    @IBOutlet var reminderImageView: UIImageView!
+    @IBOutlet var pinImageView: UIImageView!
+    
     @IBOutlet weak var bodyLabel: UILabel!
     @IBOutlet var labelLabel: UILabel!
     @IBOutlet var reminderLabel: UILabel!
@@ -34,6 +40,17 @@ class NoteCell: UICollectionViewCell {
 
     func setup(_ plainNote: PlainNote) {
         titleLabel.text = plainNote.title
+        
+        smallLockImageView.isHidden = true
+        micImageView.isHidden = false
+        attachmentImageView.isHidden = true
+        reminderImageView.isHidden = true
+        if plainNote.pinned {
+            pinImageView.isHidden = false
+        } else {
+            pinImageView.isHidden = true
+        }
+        
         bodyLabel.text = plainNote.body
         
         labelLabel.text = "Tag"
@@ -102,8 +119,7 @@ class NoteCell: UICollectionViewCell {
             reminderLabelZeroHeightConstraint.isActive = false
         }
       
-        // TODO:
-        if titleLabelIsHidden {
+        if titleLabelIsHidden && smallLockImageView.isHidden && micImageView.isHidden && attachmentImageView.isHidden && reminderImageView.isHidden && pinImageView.isHidden {
             topStackViewIsHidden = true
             topStackViewZeroHeightConstraint.isActive = true
         } else {
@@ -194,8 +210,7 @@ class NoteCell: UICollectionViewCell {
             reminderLabelZeroHeightConstraint.isActive = false
         }
         
-        // TODO:
-        if titleLabelIsHidden {
+        if titleLabelIsHidden && smallLockImageView.isHidden && micImageView.isHidden && attachmentImageView.isHidden && reminderImageView.isHidden && pinImageView.isHidden {
             topStackViewIsHidden = true
             topStackViewZeroHeightConstraint.isActive = true
         } else {
@@ -283,8 +298,7 @@ class NoteCell: UICollectionViewCell {
             reminderLabelZeroHeightConstraint.isActive = false
         }
         
-        // TODO:
-        if titleLabelIsHidden {
+        if titleLabelIsHidden && smallLockImageView.isHidden && micImageView.isHidden && attachmentImageView.isHidden && reminderImageView.isHidden && pinImageView.isHidden {
             topStackViewIsHidden = true
             topStackViewZeroHeightConstraint.isActive = true
         } else {

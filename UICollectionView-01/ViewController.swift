@@ -51,7 +51,7 @@ class ViewController: UIViewController {
         let sourceIndex = Int.random(in: 0..<normalNotes.count)
         let destIndex = Int.random(in: 0...pinnedNotes.count)
         var source = normalNotes[sourceIndex]
-        source.pinned = false
+        source.pinned = true
         pinnedNotes.insert(source, at: destIndex)
         normalNotes.remove(at: sourceIndex)
         applySnapshot(true)
@@ -193,7 +193,10 @@ class ViewController: UIViewController {
             snapshot.appendItems(normalNotes, toSection: noteSection)
         }
         
-        dataSource?.apply(snapshot, animatingDifferences: animatingDifferences) {
+        dataSource?.apply(snapshot, animatingDifferences: animatingDifferences) { [weak self] in
+            guard let self = self else { return }
+            // As a workaround to update Pin icon.
+            self.collectionView.reloadData()
         }
     }
 }
