@@ -15,8 +15,11 @@
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JgD-2u-6mi">
-                    <rect key="frame" x="8" y="52" width="304" height="149"/>
+                    <rect key="frame" x="8" y="52" width="304" height="0.0"/>
                     <color key="backgroundColor" systemColor="systemYellowColor"/>
+                    <constraints>
+                        <constraint firstAttribute="height" id="pZH-lX-CTy"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -31,6 +34,7 @@
             </constraints>
             <connections>
                 <outlet property="label" destination="JgD-2u-6mi" id="ywZ-bh-r6d"/>
+                <outlet property="labelZeroHeightConstraint" destination="pZH-lX-CTy" id="p6S-NR-td7"/>
             </connections>
             <point key="canvasLocation" x="76.811594202898561" y="160.37946428571428"/>
         </collectionReusableView>

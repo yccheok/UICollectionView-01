@@ -200,6 +200,12 @@ class ViewController: UIViewController {
 
             noteHeader.setup(noteSection)
             
+            if self.pinnedNotes.isEmpty {
+                noteHeader.hide()
+            } else {
+                noteHeader.show()
+            }
+            
             return noteHeader
         }
         
@@ -292,6 +298,9 @@ extension ViewController: UICollectionViewDelegateFlowLayout {
             } else {
                 noteHeader.setup(.normal)
             }
+
+            // Always show.
+            noteHeader.show()
             
             let cgSize = noteHeader.systemLayoutSizeFitting(
                 CGSize(width: collectionView.frame.width, height: UIView.layoutFittingExpandedSize.height),

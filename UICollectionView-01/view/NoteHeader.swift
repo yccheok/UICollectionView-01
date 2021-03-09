@@ -10,6 +10,7 @@ import UIKit
 class NoteHeader: UICollectionReusableView {
 
     @IBOutlet weak var label: UILabel!
+    @IBOutlet var labelZeroHeightConstraint: NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,6 +24,14 @@ class NoteHeader: UICollectionReusableView {
         case .pin:
             label.text = "Pinned"
         }
+    }
+    
+    func hide() {
+        labelZeroHeightConstraint.isActive = true
+    }
+    
+    func show() {
+        labelZeroHeightConstraint.isActive = false
     }
     
 }
