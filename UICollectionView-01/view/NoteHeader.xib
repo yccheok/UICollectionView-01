@@ -28,13 +28,15 @@
             <viewLayoutGuide key="safeArea" id="VXr-Tz-HHm"/>
             <constraints>
                 <constraint firstItem="VXr-Tz-HHm" firstAttribute="trailing" secondItem="JgD-2u-6mi" secondAttribute="trailing" priority="999" constant="8" id="HAH-nz-NtH"/>
-                <constraint firstItem="VXr-Tz-HHm" firstAttribute="bottom" secondItem="JgD-2u-6mi" secondAttribute="bottom" priority="999" id="Tnx-K3-D7C"/>
+                <constraint firstItem="VXr-Tz-HHm" firstAttribute="bottom" secondItem="JgD-2u-6mi" secondAttribute="bottom" priority="999" constant="8" id="Tnx-K3-D7C"/>
                 <constraint firstItem="JgD-2u-6mi" firstAttribute="leading" secondItem="VXr-Tz-HHm" secondAttribute="leading" constant="8" id="U0g-II-Raq"/>
                 <constraint firstItem="JgD-2u-6mi" firstAttribute="top" secondItem="VXr-Tz-HHm" secondAttribute="top" constant="8" id="pzl-h2-1go"/>
             </constraints>
             <connections>
+                <outlet property="bottomPaddingConstraint" destination="Tnx-K3-D7C" id="Z7n-Dv-lMV"/>
                 <outlet property="label" destination="JgD-2u-6mi" id="ywZ-bh-r6d"/>
                 <outlet property="labelZeroHeightConstraint" destination="pZH-lX-CTy" id="p6S-NR-td7"/>
+                <outlet property="topPaddingConstraint" destination="pzl-h2-1go" id="AOk-7n-YPn"/>
             </connections>
             <point key="canvasLocation" x="76.811594202898561" y="160.37946428571428"/>
         </collectionReusableView>

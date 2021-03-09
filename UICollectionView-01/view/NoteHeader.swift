@@ -8,9 +8,12 @@
 import UIKit
 
 class NoteHeader: UICollectionReusableView {
-
+    private static let padding = CGFloat(8.0)
+    
     @IBOutlet weak var label: UILabel!
     @IBOutlet var labelZeroHeightConstraint: NSLayoutConstraint!
+    @IBOutlet var topPaddingConstraint: NSLayoutConstraint!
+    @IBOutlet var bottomPaddingConstraint: NSLayoutConstraint!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,10 +31,14 @@ class NoteHeader: UICollectionReusableView {
     
     func hide() {
         labelZeroHeightConstraint.isActive = true
+        topPaddingConstraint.constant = 0
+        bottomPaddingConstraint.constant = 0
     }
     
     func show() {
         labelZeroHeightConstraint.isActive = false
+        topPaddingConstraint.constant = NoteHeader.padding
+        bottomPaddingConstraint.constant = NoteHeader.padding
     }
     
 }
