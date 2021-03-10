@@ -103,56 +103,86 @@ class ViewController: UIViewController {
         }
     }
     
-    private func setupGridLayout() {
-        let tmp = collectionView.collectionViewLayout as? UICollectionViewFlowLayout
+    private func setupGridLayout(_ itemCountPerRow: Int) {
+        let fraction: CGFloat = 1 / CGFloat(itemCountPerRow)
         
-        if (tmp == nil) {
-            let flowLayout = UICollectionViewFlowLayout()
-            
-            // Switch the layout to UICollectionViewFlowLayout
-            collectionView.collectionViewLayout = flowLayout
-            
-            flowLayout.sectionInset = .init(top: ViewController.padding, left: ViewController.padding, bottom: ViewController.padding, right: ViewController.padding)
-            flowLayout.minimumLineSpacing = ViewController.padding
-            flowLayout.minimumInteritemSpacing = 0
+        // Item
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(fraction), heightDimension: .fractionalHeight(1))
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: ViewController.padding/2, leading: 0, bottom: ViewController.padding/2, trailing: 0)
+        
+        // Group
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(fraction))
+        //let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: itemCountPerRow)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: ViewController.padding, leading: ViewController.padding, bottom: ViewController.padding, trailing: ViewController.padding)
+        
+        let headerFooterSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .estimated(1)
+        )
+        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: headerFooterSize,
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .top
+        )
+        section.boundarySupplementaryItems = [sectionHeader]
+        
+        let compositionalLayout = UICollectionViewCompositionalLayout(section: section)
+
+        // Switch the layout to UICollectionViewCompositionalLayout
+        collectionView.collectionViewLayout = compositionalLayout
+    }
+    
+    private func setupGridLayout() {
+        if UIWindow.isPortrait {
+            setupGridLayout(2)
+        } else {
+            setupGridLayout(3)
         }
     }
     
     private func setupCompactGridLayout() {
-        setupGridLayout()
+        if UIWindow.isPortrait {
+            setupGridLayout(3)
+        } else {
+            setupGridLayout(4)
+        }
     }
     
     private func setupListLayout() {
-        let tmp = collectionView.collectionViewLayout as? UICollectionViewCompositionalLayout
+        // Item
+        let itemSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .estimated(1)
+        )
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
         
-        if (tmp == nil) {
-            let size = NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1.0),
-                heightDimension: .estimated(1)
-            )
-            let item = NSCollectionLayoutItem(layoutSize: size)
-            let group = NSCollectionLayoutGroup.horizontal(layoutSize: size, subitem: item, count: 1)
+        // Group
+        let groupSize = itemSize
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
 
-            let section = NSCollectionLayoutSection(group: group)
-            section.contentInsets = NSDirectionalEdgeInsets(top: ViewController.padding, leading: ViewController.padding, bottom: ViewController.padding, trailing: ViewController.padding)
-            section.interGroupSpacing = ViewController.padding
-            
-            let headerFooterSize = NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1.0),
-                heightDimension: .estimated(1)
-            )
-            let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
-                layoutSize: headerFooterSize,
-                elementKind: UICollectionView.elementKindSectionHeader,
-                alignment: .top
-            )
-            section.boundarySupplementaryItems = [sectionHeader]
-            
-            let compositionalLayout = UICollectionViewCompositionalLayout(section: section)
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(top: ViewController.padding, leading: ViewController.padding, bottom: ViewController.padding, trailing: ViewController.padding)
+        section.interGroupSpacing = ViewController.padding
+        
+        let headerFooterSize = NSCollectionLayoutSize(
+            widthDimension: .fractionalWidth(1.0),
+            heightDimension: .estimated(1)
+        )
+        let sectionHeader = NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: headerFooterSize,
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .top
+        )
+        section.boundarySupplementaryItems = [sectionHeader]
+        
+        let compositionalLayout = UICollectionViewCompositionalLayout(section: section)
 
-            // Switch the layout to UICollectionViewCompositionalLayout
-            collectionView.collectionViewLayout = compositionalLayout
-        }
+        // Switch the layout to UICollectionViewCompositionalLayout
+        collectionView.collectionViewLayout = compositionalLayout
     }
     
     private func setupCompactListLayout() {
