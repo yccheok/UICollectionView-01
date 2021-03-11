@@ -180,8 +180,15 @@ class ViewController: UIViewController {
         group.interItemSpacing = .fixed(0)
         
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
-        section.interGroupSpacing = 0
+        // Spacing for collection view's leading & trailing & bottom. For top, it is the spacing between header and item
+        section.contentInsets = NSDirectionalEdgeInsets(
+            top: ViewController.padding * 2,
+            leading: ViewController.padding,
+            bottom: ViewController.padding * 2,
+            trailing: ViewController.padding
+        )
+        // Vertical spacing between cards within different group.
+        section.interGroupSpacing = ViewController.padding
         
         let headerFooterSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
