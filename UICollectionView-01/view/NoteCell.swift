@@ -38,9 +38,24 @@ class NoteCell: UICollectionViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
+        // https://www.hackingwithswift.com/example-code/uikit/how-to-add-a-shadow-to-a-uiview
+        self.layer.shadowColor = UIColor.black.cgColor
+        self.layer.shadowOpacity = 0.3
+        self.layer.shadowOffset = CGSize(width: 0.5, height: 0.5)
+        self.layer.shadowRadius = 2
+        self.layer.masksToBounds = false
+        //self.layer.shouldRasterize = true
+        //self.layer.rasterizationScale = UIScreen.main.scale
+        
     }
 
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        // Get the most recent bounds in layoutSubviews.
+        self.layer.shadowPath = UIBezierPath(rect: self.bounds).cgPath
+    }
+    
     func setup(_ plainNote: PlainNote) {
         titleLabel.text = plainNote.title
         

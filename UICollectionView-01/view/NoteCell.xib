@@ -95,7 +95,6 @@
                                         </constraints>
                                     </stackView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemGreenColor"/>
                                 <constraints>
                                     <constraint firstItem="dJu-ap-Fhi" firstAttribute="top" relation="greaterThanOrEqual" secondItem="s0y-7n-n7J" secondAttribute="bottom" id="0fI-QS-V2U"/>
                                     <constraint firstItem="dJu-ap-Fhi" firstAttribute="top" secondItem="s0y-7n-n7J" secondAttribute="bottom" id="Aar-Nb-jXv"/>
@@ -132,7 +131,7 @@
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
-            <color key="backgroundColor" systemColor="systemGreenColor"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="ZTg-uK-7eu" firstAttribute="trailing" secondItem="SmG-p3-htg" secondAttribute="trailing" priority="999" id="11o-Tz-vet"/>
                 <constraint firstItem="SmG-p3-htg" firstAttribute="top" secondItem="ZTg-uK-7eu" secondAttribute="top" priority="999" id="1uR-3c-uIh"/>
@@ -171,9 +170,6 @@
         <image name="mic" catalog="system" width="108" height="128"/>
         <image name="paperclip" catalog="system" width="121" height="128"/>
         <image name="pin.fill" catalog="system" width="119" height="128"/>
-        <systemColor name="systemGreenColor">
-            <color red="0.20392156862745098" green="0.7803921568627451" blue="0.34901960784313724" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
         <systemColor name="systemOrangeColor">
             <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
