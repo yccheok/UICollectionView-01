@@ -24,21 +24,19 @@ class NoteHeader: UICollectionReusableView {
         switch noteSection {
         case .normal:
             label.text = "Normal"
+            topPaddingConstraint.constant = 0
         case .pin:
             label.text = "Pinned"
+            topPaddingConstraint.constant = NoteHeader.padding * 2
         }
     }
     
     func hide() {
         labelZeroHeightConstraint.isActive = true
-        topPaddingConstraint.constant = 0
-        bottomPaddingConstraint.constant = 0
     }
     
     func show() {
         labelZeroHeightConstraint.isActive = false
-        topPaddingConstraint.constant = NoteHeader.padding
-        bottomPaddingConstraint.constant = NoteHeader.padding
     }
     
 }

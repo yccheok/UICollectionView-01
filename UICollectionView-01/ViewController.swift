@@ -109,15 +109,26 @@ class ViewController: UIViewController {
         // Item
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(fraction), heightDimension: .fractionalHeight(1))
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        item.contentInsets = NSDirectionalEdgeInsets(top: ViewController.padding/2, leading: 0, bottom: ViewController.padding/2, trailing: 0)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
         
         // Group
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalWidth(fraction))
         //let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: itemCountPerRow)
+        group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+        // Horizontal spacing between cards within same group.
+        group.interItemSpacing = .fixed(8)
         
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: ViewController.padding, leading: ViewController.padding, bottom: ViewController.padding, trailing: ViewController.padding)
+        // Spacing for collection view's leading & trailing & bottom. For top, it is the spacing between header and item
+        section.contentInsets = NSDirectionalEdgeInsets(
+            top: ViewController.padding * 2,
+            leading: ViewController.padding,
+            bottom: ViewController.padding * 2,
+            trailing: ViewController.padding
+        )
+        // Vertical spacing between cards within different group.
+        section.interGroupSpacing = ViewController.padding
         
         let headerFooterSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
@@ -159,14 +170,18 @@ class ViewController: UIViewController {
             heightDimension: .estimated(1)
         )
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        item.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
         
         // Group
         let groupSize = itemSize
+        //let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 1)
-
+        group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+        group.interItemSpacing = .fixed(0)
+        
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = NSDirectionalEdgeInsets(top: ViewController.padding, leading: ViewController.padding, bottom: ViewController.padding, trailing: ViewController.padding)
-        section.interGroupSpacing = ViewController.padding
+        section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+        section.interGroupSpacing = 0
         
         let headerFooterSize = NSCollectionLayoutSize(
             widthDimension: .fractionalWidth(1.0),
