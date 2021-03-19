@@ -86,8 +86,6 @@ class ViewController: UIViewController {
         
         let noteHeaderNib = NoteHeader.getUINib()
         collectionView.register(noteHeaderNib, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ViewController.NOTE_HEADER)
-        
-        collectionView.delegate = self
     }
     
     private func setupLayout() {
@@ -286,82 +284,3 @@ class ViewController: UIViewController {
         }
     }
 }
-
-extension ViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        precondition(layout == .grid || layout == .compactGrid)
-        
-        switch layout {
-        case .grid:
-            return gridLayout()
-        case .compactGrid:
-            return compactGridLayout()
-        default:
-            return .zero
-        }
-    }
-    
-    private func gridLayout(_ count: Int) -> CGSize {
-        let noOfItems: CGFloat = CGFloat(count)
-        let itemWidth = (collectionView.frame.width - ViewController.padding*2.0 - ViewController.padding*(noOfItems-1.0)) / CGFloat(noOfItems)
-        
-        return CGSize(
-            width: itemWidth,
-            height: itemWidth
-        )
-    }
-    
-    private func gridLayout() -> CGSize {
-        if UIWindow.isPortrait {
-            return gridLayout(2)
-        } else {
-            return gridLayout(3)
-        }
-    }
-    
-    private func compactGridLayout() -> CGSize {
-        if UIWindow.isPortrait {
-            return gridLayout(3)
-        } else {
-            return gridLayout(4)
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        precondition(layout == .grid || layout == .compactGrid)
-        
-        if pinnedNotes.isEmpty {
-            // Do not show header.
-            
-            return .init(width: 0, height: 0)
-        } else {
-            // Calculate the correct height of header.
-            
-            let noteHeader = NoteHeader.instanceFromNib()
-            
-            if (section == 0) {
-                if (!pinnedNotes.isEmpty) {
-                    noteHeader.setup(.pin)
-                } else {
-                    precondition(!normalNotes.isEmpty)
-                    
-                    noteHeader.setup(.normal)
-                }
-            } else {
-                noteHeader.setup(.normal)
-            }
-
-            // Always show.
-            noteHeader.show()
-            
-            let cgSize = noteHeader.systemLayoutSizeFitting(
-                CGSize(width: collectionView.frame.width, height: UIView.layoutFittingExpandedSize.height),
-                withHorizontalFittingPriority: .required,
-                verticalFittingPriority: .fittingSizeLevel
-            )
-            
-            return cgSize
-        }
-    }
-}
-
